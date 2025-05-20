@@ -280,7 +280,7 @@ class BulkLeaveUploadView(APIView):
                 inserted_ids.append(str(result.inserted_id))
             
             # Send email notification about bulk upload
-            send_bulk_entry_notification(len(inserted_ids))
+            # send_bulk_entry_notification(len(inserted_ids))
             
             return Response({
                 'status': 'success',
@@ -387,14 +387,21 @@ class BulkUploadView(TemplateView):
                         'end_date': pd.to_datetime(entry['End_Date']).strftime('%Y-%m-%d'),
                         'status': str(entry.get('Status', 'Pending'))
                     })
-                grouped_failed_entries.append({
-                    'staff_id': str(group['Staff_ID'].iloc[0]),
-                    'start_date': pd.to_datetime(group['Start_Date'].iloc[0]).strftime('%Y-%m-%d'),
-                    'entries': entries
-                })
+                    
+                    grouped_failed_entries.append({
+                        # 'staff_id': str(group['Staff_ID'].iloc[0]),
+                        # 'start_date': pd.to_datetime(group['Start_Date'].iloc[0]).strftime('%Y-%m-%d'),
+                        # 'entries': entries
+                        'employee_id': str(entry['Staff_ID']),
+                        'employee_name': str(entry['Employee_Name']),
+                        'leave_type': str(entry['Leave_Type']),
+                        'start_date': pd.to_datetime(entry['Start_Date']).strftime('%Y-%m-%d'),
+                        'end_date': pd.to_datetime(entry['End_Date']).strftime('%Y-%m-%d'),
+                        'status': str(entry.get('Status', 'Pending'))
+                    })
 
             # Send notification about successful uploads
-            send_bulk_entry_notification(len(successful_entries), len(duplicate_df))
+            # send_bulk_entry_notification(len(successful_entries), len(duplicate_df))
 
             # Render the upload result page
             return render(request, 'leave_management/upload_result.html', {
@@ -417,10 +424,24 @@ class LeaveApplicationsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         status = self.request.GET.get('status', '')
+        search_query = self.request.GET.get('search', '')
+        
+        # Prepare filter query
         filter_query = {}
         if status:
             filter_query['status'] = status
+        
+        # Add search query if provided
+        if search_query:
+            filter_query['$or'] = [
+                {'employee_name': {'$regex': search_query, '$options': 'i'}},
+                {'employee_id': {'$regex': search_query, '$options': 'i'}}
+            ]
+        
+        # Get leave applications with search and status filters
         leaves = list(leave_collection.find(filter_query).sort('created_at', -1))
+        
+        # Convert ObjectId to string for each leave
         for leave in leaves:
             leave['id'] = str(leave['_id'])
             for field in ['start_date', 'end_date']:
@@ -429,14 +450,20 @@ class LeaveApplicationsView(TemplateView):
                         leave[field] = datetime.fromisoformat(leave[field])
                     except Exception:
                         leave[field] = None
+        
         # Pagination
         page_number = self.request.GET.get('page', 1)
         paginator = Paginator(leaves, 15)
         page_obj = paginator.get_page(page_number)
-        context['page_obj'] = page_obj
-        context['leaves'] = page_obj.object_list
-        context['paginator'] = paginator
-        context['request'] = self.request
+        
+        context.update({
+            'page_obj': page_obj,
+            'leaves': page_obj.object_list,
+            'paginator': paginator,
+            'request': self.request,
+            'status': status,
+            'search_query': search_query
+        })
         return context
 
 @csrf_protect

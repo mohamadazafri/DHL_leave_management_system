@@ -1,235 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HR Dashboard - DHL</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .quick-approval-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .quick-approval-scroll {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;     /* Firefox */
-        }
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .quick-approval-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .quick-approval-scroll {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
     </style>
-</head>
-<body class="bg-gray-100">
-    <div class="flex min-h-screen bg-gray-100">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-yellow-400 text-red-600 flex flex-col py-8 px-6 rounded-r-2xl shadow-lg">
-            <h1 class="text-3xl font-bold mb-10">DHL Leave Management System</h1>
-            <nav class="flex flex-col space-y-4">
-                <a href="{% url 'leave_form' %}" class="hover:underline text-lg">New Leave</a>
-                <a href="{% url 'dashboard' %}" class="hover:underline text-lg font-bold text-lg underline">Dashboard</a>
-                <a href="{% url 'leave_applications' %}" class="hover:underline text-lg">All Applications</a>
-                <a href="{% url 'bulk_upload' %}" class="hover:underline text-lg">Bulk Upload</a>
-                <form method="post" action="{% url 'logout' %}" class="mt-auto">
-                    {% csrf_token %}
-                    <button type="submit" class="w-full text-left hover:underline text-lg text-red-600">
-                        Logout
-                    </button>
-                </form>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="flex-1 flex justify-center">
-            <div class="w-full max-w-6xl px-4 py-8">
-                <!-- Stats Summary -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div class="bg-white p-4 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-gray-700">Total Applications</h3>
-                        <p class="text-3xl font-bold text-red-600">{{ total_leaves }}</p>
-                    </div>
-                    
-                    <div class="bg-white p-4 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-gray-700">Pending Applications</h3>
-                        <p class="text-3xl font-bold text-yellow-500">{{ pending_leaves }}</p>
-                    </div>
-                    
-                    <div class="bg-white p-4 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-gray-700">Approved Applications</h3>
-                        <p class="text-3xl font-bold text-green-600">{{ approved_leaves }}</p>
-                    </div>
-                </div>
-                
-                <!-- Quick Approval Segment -->
-                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                    <h2 class="text-xl font-semibold mb-4">Quick Approval</h2>
-                    <div class="relative">
-                        <div class="flex overflow-x-auto space-x-4 pb-2"
-                             style="max-width: 100%; scrollbar-width: thin;">
-                            {% for leave in leaves %}
-                                {% if leave.status == 'Pending' %}
-                                    <div class="min-w-[260px] max-w-xs bg-yellow-50 border border-yellow-200 rounded-lg p-4 shadow flex flex-col justify-between">
-                                        <div>
-                                            <div class="font-bold text-lg text-gray-800 mb-1">{{ leave.employee_name }}</div>
-                                            <div class="text-sm text-gray-500 mb-2">ID: {{ leave.employee_id }}</div>
-                                            <div class="text-sm mb-1"><span class="font-semibold">Type:</span> {{ leave.leave_type }}</div>
-                                            <div class="text-sm mb-2">
-                                                <span class="font-semibold">Dates:</span>
-                                                {{ leave.start_date|date:"M d, Y" }} - {{ leave.end_date|date:"M d, Y" }}
-                                            </div>
-                                        </div>
-                                        <div class="flex gap-2 mt-2">
-                                            <form method="post" action="{% url 'update_leave_status' leave.id %}">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="status" value="Approved">
-                                                <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Approve</button>
-                                            </form>
-                                            <form method="post" action="{% url 'update_leave_status' leave.id %}">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="status" value="Rejected">
-                                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Reject</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% empty %}
-                                <div class="text-gray-500">No pending applications for quick approval.</div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Leave Applications Table -->
-                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-semibold">Leave Applications</h2>
-                        <form method="get" action="{% url 'dashboard' %}" class="flex">
-                            <select name="status" class="rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 mr-2">
-                                <option value="">All Status</option>
-                                <option value="Pending" {% if status == 'Pending' %}selected{% endif %}>Pending</option>
-                                <option value="Approved" {% if status == 'Approved' %}selected{% endif %}>Approved</option>
-                                <option value="Rejected" {% if status == 'Rejected' %}selected{% endif %}>Rejected</option>
-                            </select>
-                            <button type="submit" class="bg-gray-200 px-3 py-1 rounded-md hover:bg-gray-300">Filter</button>
-                        </form>
-                    </div>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Leave Type</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dates</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                {% for leave in leaves %}
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="font-medium text-gray-900">{{ leave.employee_name }}</div>
-                                        <div class="text-sm text-gray-500">ID: {{ leave.employee_id }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ leave.department }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ leave.leave_type }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ leave.start_date|date:"M d, Y" }} - {{ leave.end_date|date:"M d, Y" }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                        {% if leave.status == 'Pending' %}bg-yellow-100 text-yellow-800
-                                        {% elif leave.status == 'Approved' %}bg-green-100 text-green-800
-                                        {% elif leave.status == 'Rejected' %}bg-red-100 text-red-800{% endif %}">
-                                            {{ leave.status }}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        {% if leave.status == 'Pending' %}
-                                        <form method="post" action="{% url 'update_leave_status' leave.id %}" class="inline">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="status" value="Approved">
-                                            <button type="submit" class="text-green-600 hover:text-green-900 mr-2">Approve</button>
-                                        </form>
-                                        <form method="post" action="{% url 'update_leave_status' leave.id %}" class="inline">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="status" value="Rejected">
-                                            <button type="submit" class="text-red-600 hover:text-red-900">Reject</button>
-                                        </form>
-                                        {% else %}
-                                        <span class="text-gray-400">Processed</span>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                {% empty %}
-                                <tr>
-                                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">
-                                        No leave applications found
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <!-- Leave Types Chart -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold mb-4">Leave Types Distribution</h2>
-                    <div class="h-64">
-                        <canvas id="leaveTypesChart"></canvas>
-                    </div>
-                    
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            const ctx = document.getElementById('leaveTypesChart').getContext('2d');
-                            const leaveTypesChart = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: {{ leave_types|safe }},
-                                    datasets: [{
-                                        label: 'Number of Applications',
-                                        data: {{ leave_counts|safe }},
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.2)',
-                                            'rgba(54, 162, 235, 0.2)',
-                                            'rgba(255, 206, 86, 0.2)',
-                                            'rgba(75, 192, 192, 0.2)',
-                                            'rgba(153, 102, 255, 0.2)',
-                                            'rgba(255, 159, 64, 0.2)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true,
-                                            ticks: {
-                                                precision: 0
-                                            }
-                                        }
-                                    }
-                                }
-                            });
-                        });
-                    </script>
-                </div>
+  </head>
+  <body class="bg-gray-100">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="fixed top-0 left-0 h-full w-64 bg-yellow-400 text-red-600 flex flex-col py-8 px-6 rounded-r-2xl shadow-lg z-20"
+      >
+        <h1 class="text-3xl font-bold mb-10">DHL Leave Management System</h1>
+        <nav class="flex flex-col space-y-4">
+          <a href="{% url 'leave_form' %}" class="hover:underline text-lg"
+            >New Leave</a
+          >
+          <a href="{% url 'dashboard' %}" class="hover:underline text-lg"
+            >Dashboard</a
+          >
+          <a
+            href="{% url 'leave_applications' %}"
+            class="hover:underline text-lg"
+            >All Applications</a
+          >
+          <a href="{% url 'bulk_upload' %}" class="hover:underline text-lg"
+            >Bulk Upload</a
+          >
+        </nav>
+      </aside>
+      <!-- Main Content -->
+      <main class="flex-1 flex justify-center ml-64">
+        <div class="w-full max-w-6xl px-4 py-8">
+          <!-- Stats Summary -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+              <h3 class="text-lg font-semibold text-gray-700">Total Applications</h3>
+              <p class="text-3xl font-bold text-red-600">{{ total_leaves }}</p>
             </div>
-        </main>
+            
+            <div class="bg-white p-4 rounded-lg shadow-md">
+              <h3 class="text-lg font-semibold text-gray-700">Pending Applications</h3>
+              <p class="text-3xl font-bold text-yellow-500">{{ pending_leaves }}</p>
+            </div>
+            
+            <div class="bg-white p-4 rounded-lg shadow-md">
+              <h3 class="text-lg font-semibold text-gray-700">Approved Applications</h3>
+              <p class="text-3xl font-bold text-green-600">{{ approved_leaves }}</p>
+            </div>
+          </div>
+          
+          <!-- Quick Approval Segment -->
+          <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold mb-4">Quick Approval</h2>
+            <div class="relative">
+              <div class="flex overflow-x-auto space-x-4 pb-2"
+                   style="max-width: 100%; scrollbar-width: thin;">
+                {% for leave in leaves %}
+                  {% if leave.status == 'Pending' %}
+                    <div class="min-w-[260px] max-w-xs bg-yellow-50 border border-yellow-200 rounded-lg p-4 shadow flex flex-col justify-between">
+                      <div>
+                        <div class="font-bold text-lg text-gray-800 mb-1">{{ leave.employee_name }}</div>
+                        <div class="text-sm text-gray-500 mb-2">ID: {{ leave.employee_id }}</div>
+                        <div class="text-sm mb-1"><span class="font-semibold">Type:</span> {{ leave.leave_type }}</div>
+                        <div class="text-sm mb-2">
+                          <span class="font-semibold">Dates:</span>
+                          {{ leave.start_date|date:"M d, Y" }} - {{ leave.end_date|date:"M d, Y" }}
+                        </div>
+                      </div>
+                      <div class="flex gap-2 mt-2">
+                        <form method="post" action="{% url 'update_leave_status' leave.id %}">
+                          {% csrf_token %}
+                          <input type="hidden" name="status" value="Approved">
+                          <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Approve</button>
+                        </form>
+                        <form method="post" action="{% url 'update_leave_status' leave.id %}">
+                          {% csrf_token %}
+                          <input type="hidden" name="status" value="Rejected">
+                          <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Reject</button>
+                        </form>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% empty %}
+                  <div class="text-gray-500">No pending applications for quick approval.</div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          <!-- Leave Applications Table -->
+          <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-xl font-semibold">Leave Applications</h2>
+              <form method="get" action="{% url 'dashboard' %}" class="flex">
+                <select name="status" class="rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 mr-2">
+                  <option value="">All Status</option>
+                  <option value="Pending" {% if status == 'Pending' %}selected{% endif %}>Pending</option>
+                  <option value="Approved" {% if status == 'Approved' %}selected{% endif %}>Approved</option>
+                  <option value="Rejected" {% if status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                </select>
+                <button type="submit" class="bg-gray-200 px-3 py-1 rounded-md hover:bg-gray-300">Filter</button>
+              </form>
+            </div>
+            
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Leave Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dates</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  {% for leave in leaves %}
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="font-medium text-gray-900">{{ leave.employee_name }}</div>
+                      <div class="text-sm text-gray-500">ID: {{ leave.employee_id }}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {{ leave.department }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {{ leave.leave_type }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {{ leave.start_date|date:"M d, Y" }} - {{ leave.end_date|date:"M d, Y" }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                      {% if leave.status == 'Pending' %}bg-yellow-100 text-yellow-800
+                      {% elif leave.status == 'Approved' %}bg-green-100 text-green-800
+                      {% elif leave.status == 'Rejected' %}bg-red-100 text-red-800{% endif %}">
+                        {{ leave.status }}
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      {% if leave.status == 'Pending' %}
+                      <form method="post" action="{% url 'update_leave_status' leave.id %}" class="inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="status" value="Approved">
+                        <button type="submit" class="text-green-600 hover:text-green-900 mr-2">Approve</button>
+                      </form>
+                      <form method="post" action="{% url 'update_leave_status' leave.id %}" class="inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="status" value="Rejected">
+                        <button type="submit" class="text-red-600 hover:text-red-900">Reject</button>
+                      </form>
+                      {% else %}
+                      <span class="text-gray-400">Processed</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                      No leave applications found
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <!-- Leave Types Chart -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Leave Types Distribution</h2>
+            <div class="h-64">
+              <canvas id="leaveTypesChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-</body>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('leaveTypesChart').getContext('2d');
+        const leaveTypesChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: {{ leave_types|safe }},
+            datasets: [{
+              label: 'Number of Applications',
+              data: {{ leave_counts|safe }},
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0
+                }
+              }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
 

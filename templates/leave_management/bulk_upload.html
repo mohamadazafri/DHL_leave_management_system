@@ -8,50 +8,33 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
-  <body class="bg-gray-50 font-['Inter']">
-    <div class="min-h-screen">
-      <!-- Header -->
-      <header
-        class="bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg"
+  <body class="bg-gray-100">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="fixed top-0 left-0 h-full w-64 bg-yellow-400 text-red-600 flex flex-col py-8 px-6 rounded-r-2xl shadow-lg z-20"
       >
-        <div class="container mx-auto px-4 py-6">
-          <div class="flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-bold mb-4 md:mb-0">
-              DHL Leave Management
-            </h1>
-            <nav class="flex flex-wrap gap-6">
-              <a
-                href="{% url 'leave_form' %}"
-                class="hover:text-yellow-300 transition-colors duration-200"
-                >New Leave</a
-              >
-              <a
-                href="{% url 'dashboard' %}"
-                class="hover:text-yellow-300 transition-colors duration-200"
-                >Dashboard</a
-              >
-              <a
-                href="{% url 'leave_applications' %}"
-                class="hover:text-yellow-300 transition-colors duration-200"
-                >All Applications</a
-              >
-              <a
-                href="{% url 'bulk_upload' %}"
-                class="text-yellow-300 font-semibold border-b-2 border-yellow-300"
-                >Bulk Upload</a
-              >
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      <main class="container mx-auto px-4 py-8">
-        <!-- Main Content Card -->
+        <h1 class="text-3xl font-bold mb-10">DHL Leave Management System</h1>
+        <nav class="flex flex-col space-y-4">
+          <a href="{% url 'leave_form' %}" class="hover:underline text-lg"
+            >New Leave</a
+          >
+          <a href="{% url 'dashboard' %}" class="hover:underline text-lg"
+            >Dashboard</a
+          >
+          <a
+            href="{% url 'leave_applications' %}"
+            class="hover:underline text-lg"
+            >All Applications</a
+          >
+          <a href="{% url 'bulk_upload' %}" class="hover:underline text-lg"
+            >Bulk Upload</a
+          >
+        </nav>
+      </aside>
+      <!-- Main Content -->
+      <main class="flex-1 flex justify-center ml-64">
         <div class="max-w-4xl mx-auto">
           <div class="bg-white rounded-xl shadow-lg overflow-hidden">
             <div class="p-8">
@@ -237,56 +220,7 @@
             </div>
           </div>
 
-          <!-- API Documentation Card -->
-          <div class="mt-8 bg-white rounded-xl shadow-lg overflow-hidden">
-            <div class="p-8">
-              <h2 class="text-2xl font-bold text-gray-800 mb-2">
-                API Endpoint for UiPath
-              </h2>
-              <p class="text-gray-600 mb-6">
-                Use this API endpoint for UiPath integration:
-              </p>
 
-              <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <code class="text-sm font-mono text-gray-800"
-                  >POST {{ request.scheme }}://{{ request.get_host
-                  }}/api/leaves/bulk-upload/</code
-                >
-              </div>
-
-              <div class="mt-6">
-                <h3 class="font-semibold text-gray-800 mb-3">
-                  Request Format:
-                </h3>
-                <div
-                  class="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden"
-                >
-                  <pre
-                    class="p-4 overflow-x-auto"
-                  ><code class="text-sm font-mono text-gray-800">{
-  "leaves": [
-    {
-      "employee_name": "John Doe",
-      "employee_id": "EMP001",
-      "leave_type": "Annual",
-      "start_date": "2025-05-10",
-      "end_date": "2025-05-15",
-      "status": "Pending"
-    },
-    {
-      "employee_name": "Jane Smith",
-      "employee_id": "EMP002",
-      "leave_type": "Sick",
-      "start_date": "2025-05-12",
-      "end_date": "2025-05-13",
-      "status": "Approved"
-    }
-  ]
-}</code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </main>
     </div>
@@ -310,43 +244,6 @@
         const activeTab = document.getElementById(tabId + "-tab");
         activeTab.classList.remove("border-transparent", "text-gray-500");
         activeTab.classList.add("border-red-600", "text-red-600");
-      }
-
-      // Add drag and drop functionality
-      const dropZone = document.querySelector(".border-dashed");
-      const fileInput = document.getElementById("excel_file");
-
-      ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
-        dropZone.addEventListener(eventName, preventDefaults, false);
-      });
-
-      function preventDefaults(e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-
-      ["dragenter", "dragover"].forEach((eventName) => {
-        dropZone.addEventListener(eventName, highlight, false);
-      });
-
-      ["dragleave", "drop"].forEach((eventName) => {
-        dropZone.addEventListener(eventName, unhighlight, false);
-      });
-
-      function highlight(e) {
-        dropZone.classList.add("border-red-500");
-      }
-
-      function unhighlight(e) {
-        dropZone.classList.remove("border-red-500");
-      }
-
-      dropZone.addEventListener("drop", handleDrop, false);
-
-      function handleDrop(e) {
-        const dt = e.dataTransfer;
-        const files = dt.files;
-        fileInput.files = files;
       }
     </script>
   </body>

@@ -251,14 +251,14 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="read google spreadsheet" DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="885,1793.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="read google spreadsheet" DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1311,1788" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="534.4,1739.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence sap:VirtualizedContainerService.HintSize="536,1734" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="spreadsheetId" />
         <Variable x:TypeArguments="x:String" Name="tempPath" />
@@ -270,7 +270,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="500.8,113.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign sap:VirtualizedContainerService.HintSize="502,114" sap2010:WorkflowViewState.IdRef="Assign_3">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[spreadsheetId]</OutArgument>
         </Assign.To>
@@ -278,29 +278,29 @@
           <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(in_SheetURL, "spreadsheets/d/([a-zA-Z0-9-_]+)").Groups(1).Value]</InArgument>
         </Assign.Value>
       </Assign>
-      <ugas:GoogleSheetsApplicationScope ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" FileId="{x:Null}" Filename="{x:Null}" ParentFolderId="{x:Null}" ParentFolderPath="{x:Null}" SpreadsheetName="{x:Null}" Timeout="{x:Null}" Account="azafri9@gmail.com" Action="UseExisting" Connector="uipath-google-sheets" DisplayName="Use Google Spreadsheet" sap:VirtualizedContainerService.HintSize="500.8,1542.4" sap2010:WorkflowViewState.IdRef="GoogleSheetsApplicationScope_2" Mode="EnterId" SpreadsheetId="[spreadsheetId]" UseConnectionService="False" UserEmail="azafri9@gmail.com">
+      <ugas:GoogleSheetsApplicationScope ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" FileId="{x:Null}" Filename="{x:Null}" ParentFolderId="{x:Null}" ParentFolderPath="{x:Null}" SpreadsheetName="{x:Null}" Timeout="{x:Null}" Account="azafri9@gmail.com" Action="UseExisting" Connector="uipath-google-sheets" DisplayName="Use Google Spreadsheet" sap:VirtualizedContainerService.HintSize="502,1537" sap2010:WorkflowViewState.IdRef="GoogleSheetsApplicationScope_2" Mode="EnterId" SpreadsheetId="[spreadsheetId]" UseConnectionService="False" UserEmail="azafri9@gmail.com">
         <ugas:GoogleSheetsApplicationScope.Body>
           <ActivityAction x:TypeArguments="ugas:IGoogleSheetTarget">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ugas:IGoogleSheetTarget" Name="Spreadsheet" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="467.2,1236.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="468,1231" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <Sequence.Variables>
                 <Variable x:TypeArguments="ue:IReadRangeRef" Name="range" />
                 <Variable x:TypeArguments="sd:DataTable" Name="duplicateTable" />
-                <Variable x:TypeArguments="x:String" Name="showDuplicateTable" />
-                <Variable x:TypeArguments="x:String" Name="showTable" />
+                <Variable x:TypeArguments="x:String" Name="dtDuplicateSheetText" />
+                <Variable x:TypeArguments="x:String" Name="dtSheetText" />
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <uga:DownloadSpreadsheet ContinueOnError="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DisplayName="Download Spreadsheet" DownloadAs="Xlsx" DownloadPath="[tempFileName]" GoogleSpreadsheet="[Spreadsheet]" sap:VirtualizedContainerService.HintSize="433.6,264.8" sap2010:WorkflowViewState.IdRef="DownloadSpreadsheet_1" LocalFilepath="[tempPath]" />
-              <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[dtSheet]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="433.6,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet5" WorkbookPath="[tempPath]" />
-              <ui:OutputDataTable DataTable="[dtSheet]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="433.6,112.8" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[showTable]" />
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[showTable]" />
-              <Assign sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <uga:DownloadSpreadsheet ContinueOnError="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DisplayName="Download Spreadsheet" DownloadAs="Xlsx" DownloadPath="[tempFileName]" GoogleSpreadsheet="[Spreadsheet]" sap:VirtualizedContainerService.HintSize="434,264" sap2010:WorkflowViewState.IdRef="DownloadSpreadsheet_1" LocalFilepath="[tempPath]" />
+              <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[dtSheet]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet5" WorkbookPath="[tempPath]" />
+              <ui:OutputDataTable DataTable="[dtSheet]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[dtSheetText]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[dtSheetText]" />
+              <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_5">
                 <Assign.To>
                   <OutArgument x:TypeArguments="sd:DataTable">[dtDuplicateSheet]</OutArgument>
                 </Assign.To>
@@ -308,9 +308,9 @@
                   <InArgument x:TypeArguments="sd:DataTable">[(From p In dtSheet.Select() Where (From q In dtSheet.Select() Where q("Staff ID").Equals(p("Staff ID")) And q("Start Date").Equals(p("Start Date")) Select q).toArray.count&gt;1 Select p).ToArray.copyToDataTable()]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:OutputDataTable DataTable="[dtDuplicateSheet]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="433.6,112.8" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[showDuplicateTable]" />
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[showDuplicateTable]" />
-              <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="433.6,104" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[tempPath]" />
+              <ui:OutputDataTable DataTable="[dtDuplicateSheet]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[dtDuplicateSheetText]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[dtDuplicateSheetText]" />
+              <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="434,103" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[tempPath]" />
             </Sequence>
           </ActivityAction>
         </ugas:GoogleSheetsApplicationScope.Body>

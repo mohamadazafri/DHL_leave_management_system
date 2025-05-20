@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}DHL Leave Management System{% endblock %}</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="bg-gray-50 font-['Inter']">
+    <div class="min-h-screen flex">
+      <!-- Side Navbar -->
+      <aside
+        class="w-72 bg-yellow-400 text-red-700 flex flex-col py-10 px-8 shadow-lg"
+      >
+        <div class="mb-12">
+          <h1 class="text-3xl font-extrabold leading-tight mb-2">
+            DHL Leave<br />Management<br />System
+          </h1>
+        </div>
+        <nav class="flex flex-col gap-4 text-lg font-semibold">
+          <a
+            href="{% url 'leave_form' %}"
+            class="hover:underline hover:text-red-900 transition-colors duration-200"
+            >New Leave</a
+          >
+          <a
+            href="{% url 'dashboard' %}"
+            class="hover:underline hover:text-red-900 transition-colors duration-200"
+            >Dashboard</a
+          >
+          <a
+            href="{% url 'leave_applications' %}"
+            class="hover:underline hover:text-red-900 transition-colors duration-200"
+            >All Applications</a
+          >
+          <a
+            href="{% url 'bulk_upload' %}"
+            class="hover:underline hover:text-red-900 transition-colors duration-200"
+            >Bulk Upload</a
+          >
+        </nav>
+      </aside>
+      <!-- Main Content -->
+      <main class="flex-1 p-8">{% block content %}{% endblock %}</main>
+    </div>
+    {% block extra_scripts %}{% endblock %}
+  </body>
+</html>

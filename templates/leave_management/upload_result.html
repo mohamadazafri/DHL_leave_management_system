@@ -8,49 +8,33 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
-  <body class="bg-gray-50 font-['Inter']">
-    <div class="min-h-screen">
-      <!-- Header -->
-      <header
-        class="bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg"
+  <body class="bg-gray-100">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="fixed top-0 left-0 h-full w-64 bg-yellow-400 text-red-600 flex flex-col py-8 px-6 rounded-r-2xl shadow-lg z-20"
       >
-        <div class="container mx-auto px-4 py-6">
-          <div class="flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-bold mb-4 md:mb-0">
-              DHL Leave Management
-            </h1>
-            <nav class="flex flex-wrap gap-6">
-              <a
-                href="{% url 'leave_form' %}"
-                class="hover:text-yellow-300 transition-colors duration-200"
-                >New Leave</a
-              >
-              <a
-                href="{% url 'dashboard' %}"
-                class="hover:text-yellow-300 transition-colors duration-200"
-                >Dashboard</a
-              >
-              <a
-                href="{% url 'leave_applications' %}"
-                class="hover:text-yellow-300 transition-colors duration-200"
-                >All Applications</a
-              >
-              <a
-                href="{% url 'bulk_upload' %}"
-                class="text-yellow-300 font-semibold border-b-2 border-yellow-300"
-                >Bulk Upload</a
-              >
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-10">DHL Leave Management System</h1>
+        <nav class="flex flex-col space-y-4">
+          <a href="{% url 'leave_form' %}" class="hover:underline text-lg"
+            >New Leave</a
+          >
+          <a href="{% url 'dashboard' %}" class="hover:underline text-lg"
+            >Dashboard</a
+          >
+          <a
+            href="{% url 'leave_applications' %}"
+            class="hover:underline text-lg"
+            >All Applications</a
+          >
+          <a href="{% url 'bulk_upload' %}" class="hover:underline text-lg"
+            >Bulk Upload</a
+          >
+        </nav>
+      </aside>
+      <!-- Main Content -->
+      <main class="flex-1 flex justify-center ml-64">
         <div class="max-w-6xl mx-auto">
           <!-- Summary Card -->
           <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
@@ -248,41 +232,29 @@
                       {% for group in grouped_failed_entries %}
                       <tr>
                         <td
-                          colspan="6"
-                          class="bg-gray-100 px-6 py-2 font-semibold text-gray-700"
-                        >
-                          Employee: {{ group.staff_id }} &nbsp;|&nbsp; Start
-                          Date: {{ group.start_date }}
-                        </td>
-                      </tr>
-                      {% for entry in group.entries %}
-                      <tr
-                        class="entry-row {% if forloop.parentloop.counter > 10 %}hidden{% endif %}"
-                      >
-                        <td
                           class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                         >
-                          {{ entry.employee_name }}
+                          {{ group.employee_name }}
                         </td>
                         <td
                           class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                         >
-                          {{ entry.employee_id }}
+                          {{ group.employee_id }}
                         </td>
                         <td
                           class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                         >
-                          {{ entry.leave_type }}
+                          {{ group.leave_type }}
                         </td>
                         <td
                           class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                         >
-                          {{ entry.start_date }}
+                          {{ group.start_date }}
                         </td>
                         <td
                           class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                         >
-                          {{ entry.end_date }}
+                          {{ group.end_date }}
                         </td>
                         <td
                           class="px-6 py-4 whitespace-nowrap text-sm text-red-600"
@@ -290,58 +262,23 @@
                           Duplicate entry
                         </td>
                       </tr>
-                      {% endfor %} {% endfor %}
+                      {% endfor %}
                     </tbody>
                   </table>
-                  {% if failed_count > 10 %}
-                  <div class="mt-4 flex justify-center">
-                    <button
-                      onclick="loadMoreEntries('failed')"
-                      class="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
-                    >
-                      Load More
-                    </button>
-                  </div>
-                  {% endif %}
                 </div>
               </div>
               {% else %}
               <div class="p-8 text-center text-gray-500">
-                No failed entries to display<br />
-                <span style="font-size: 12px; color: #888"
-                  >Debug: grouped_failed_entries = {{
-                  grouped_failed_entries|length }}</span
-                >
+                No failed entries to display
               </div>
               {% endif %}
             </div>
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="mt-8 flex justify-center space-x-4">
-            <a
-              href="{% url 'bulk_upload' %}"
-              class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
-            >
-              Upload Another File
-            </a>
-            <a
-              href="{% url 'dashboard' %}"
-              class="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
-            >
-              Go to Dashboard
-            </a>
           </div>
         </div>
       </main>
     </div>
 
     <script>
-      let currentPage = {
-        successful: 1,
-        failed: 1,
-      };
-
       function showTab(tabId) {
         // Hide all tab contents
         document.querySelectorAll(".tab-content").forEach((content) => {
@@ -364,24 +301,20 @@
       }
 
       function loadMoreEntries(type) {
-        const rows = document.querySelectorAll(`#${type}-entries .entry-row`);
-        const startIndex = currentPage[type] * 10;
-        const endIndex = startIndex + 10;
+        const rows = document.querySelectorAll(
+          `#${type}-entries .entry-row.hidden`
+        );
+        const rowsToShow = Math.min(10, rows.length);
 
-        for (let i = startIndex; i < endIndex && i < rows.length; i++) {
+        for (let i = 0; i < rowsToShow; i++) {
           rows[i].classList.remove("hidden");
         }
 
-        currentPage[type]++;
-
-        // Hide load more button if all entries are shown
-        if (endIndex >= rows.length) {
-          const loadMoreButton = document.querySelector(
-            `#${type}-entries button`
-          );
-          if (loadMoreButton) {
-            loadMoreButton.style.display = "none";
-          }
+        // Hide load more button if all rows are shown
+        if (rows.length <= rowsToShow) {
+          document
+            .querySelector(`#${type}-entries button`)
+            .classList.add("hidden");
         }
       }
     </script>

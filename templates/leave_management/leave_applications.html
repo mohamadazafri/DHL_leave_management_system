@@ -11,7 +11,7 @@
   </head>
   <body class="bg-gray-100">
     <div class="flex min-h-screen">
-      <!-- Sticky Sidebar -->
+      <!-- Sidebar -->
       <aside
         class="fixed top-0 left-0 h-full w-64 bg-yellow-400 text-red-600 flex flex-col py-8 px-6 rounded-r-2xl shadow-lg z-20"
       >
@@ -25,7 +25,7 @@
           >
           <a
             href="{% url 'leave_applications' %}"
-            class="font-bold text-lg underline"
+            class="hover:underline text-lg"
             >All Applications</a
           >
           <a href="{% url 'bulk_upload' %}" class="hover:underline text-lg"
@@ -33,166 +33,210 @@
           >
         </nav>
       </aside>
-
       <!-- Main Content -->
       <main class="flex-1 flex justify-center ml-64">
-        <div class="w-full max-w-6xl px-4 py-8">
-          <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 class="text-xl font-semibold mb-4">All Leave Applications</h2>
-            <div class="flex space-x-2 mb-4">
-              <a
-                href="?{% if request.GET.page %}page={{ request.GET.page }}&{% endif %}"
-                class="px-4 py-2 rounded-full border {% if not request.GET.status %}bg-yellow-400 text-red-700 font-bold border-yellow-400{% else %}bg-white text-gray-700 border-gray-300 hover:bg-gray-100{% endif %}"
-                >All</a
-              >
-              <a
-                href="?status=Pending{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}"
-                class="px-4 py-2 rounded-full border {% if request.GET.status == 'Pending' %}bg-yellow-400 text-red-700 font-bold border-yellow-400{% else %}bg-white text-gray-700 border-gray-300 hover:bg-gray-100{% endif %}"
-                >Pending</a
-              >
-              <a
-                href="?status=Approved{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}"
-                class="px-4 py-2 rounded-full border {% if request.GET.status == 'Approved' %}bg-green-200 text-green-800 font-bold border-green-200{% else %}bg-white text-gray-700 border-gray-300 hover:bg-gray-100{% endif %}"
-                >Approved</a
-              >
-              <a
-                href="?status=Rejected{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}"
-                class="px-4 py-2 rounded-full border {% if request.GET.status == 'Rejected' %}bg-red-200 text-red-800 font-bold border-red-200{% else %}bg-white text-gray-700 border-gray-300 hover:bg-gray-100{% endif %}"
-                >Rejected</a
-              >
-            </div>
-            <div class="w-full overflow-x-auto rounded-lg">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Employee
-                    </th>
-                    <th
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Department
-                    </th>
-                    <th
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Leave Type
-                    </th>
-                    <th
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Start Date
-                    </th>
-                    <th
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      End Date
-                    </th>
-                    <th
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  {% for leave in leaves %}
-                  <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="font-medium text-gray-900">
-                        {{ leave.employee_name }}
-                      </div>
-                      <div class="text-sm text-gray-500">
-                        ID: {{ leave.employee_id }}
-                      </div>
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                    >
-                      {{ leave.department }}
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                    >
-                      {{ leave.leave_type }}
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                    >
-                      {{ leave.start_date|date:"M d, Y" }}
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                    >
-                      {{ leave.end_date|date:"M d, Y" }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <span
-                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if leave.status == 'Pending' %}bg-yellow-100 text-yellow-800 {% elif leave.status == 'Approved' %}bg-green-100 text-green-800 {% elif leave.status == 'Rejected' %}bg-red-100 text-red-800{% endif %}"
-                      >
-                        {{ leave.status }}
-                      </span>
-                    </td>
-                  </tr>
-                  {% empty %}
-                  <tr>
-                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">
-                      No leave applications found
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
+        <div class="max-w-5xl mx-auto">
+          <h2 class="text-2xl font-bold mb-6">All Leave Applications</h2>
 
-            <!-- Pagination Controls -->
-            <div class="flex justify-center mt-6">
-              <nav
-                class="inline-flex rounded-md shadow-sm"
-                aria-label="Pagination"
+          <!-- Search Form -->
+          <form method="get" class="mb-4">
+            <div class="flex gap-2">
+              <input
+                type="text"
+                name="search"
+                value="{{ search_query }}"
+                placeholder="Search by name or employee ID..."
+                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+              <button
+                type="submit"
+                class="px-4 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
               >
-                {% if page_obj.has_previous %}
-                <a
-                  href="?page={{ page_obj.previous_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}"
-                  class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 rounded-l-md"
-                  >Previous</a
-                >
-                {% else %}
-                <span
-                  class="px-3 py-1 border border-gray-300 bg-gray-100 text-gray-400 rounded-l-md cursor-not-allowed"
-                  >Previous</span
-                >
-                {% endif %} 
-                {% for num in page_obj.paginator.page_range %} 
-                {% if num == page_obj.number %}
-                <span
-                  class="px-3 py-1 border-t border-b border-gray-300 bg-yellow-200 text-yellow-800 font-bold"
-                  >{{ num }}</span
-                >
-                {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
-                <a
-                  href="?page={{ num }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}"
-                  class="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-                  >{{ num }}</a
-                >
-                {% endif %} 
-                {% endfor %} 
-                {% if page_obj.has_next %}
-                <a
-                  href="?page={{ page_obj.next_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}"
-                  class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 rounded-r-md"
-                  >Next</a
-                >
-                {% else %}
-                <span
-                  class="px-3 py-1 border border-gray-300 bg-gray-100 text-gray-400 rounded-r-md cursor-not-allowed"
-                  >Next</span
-                >
-                {% endif %}
-              </nav>
+                Search
+              </button>
+              {% if search_query %}
+              <a
+                href="?{% if status %}status={{ status }}{% endif %}"
+                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              >
+                Clear
+              </a>
+              {% endif %}
             </div>
+          </form>
+
+          <div class="flex gap-3 mb-4">
+            <a
+              href="?{% if search_query %}search={{ search_query }}{% endif %}"
+              class="px-4 py-2 rounded-full font-medium text-sm focus:outline-none transition-colors duration-200 {% if not status %}bg-yellow-400 text-white{% else %}bg-white text-gray-700 border border-gray-300{% endif %}"
+              >All</a
+            >
+            <a
+              href="?status=Pending{% if search_query %}&search={{ search_query }}{% endif %}"
+              class="px-4 py-2 rounded-full font-medium text-sm focus:outline-none transition-colors duration-200 {% if status == 'Pending' %}bg-yellow-400 text-white{% else %}bg-white text-gray-700 border border-gray-300{% endif %}"
+              >Pending</a
+            >
+            <a
+              href="?status=Approved{% if search_query %}&search={{ search_query }}{% endif %}"
+              class="px-4 py-2 rounded-full font-medium text-sm focus:outline-none transition-colors duration-200 {% if status == 'Approved' %}bg-yellow-400 text-white{% else %}bg-white text-gray-700 border border-gray-300{% endif %}"
+              >Approved</a
+            >
+            <a
+              href="?status=Rejected{% if search_query %}&search={{ search_query }}{% endif %}"
+              class="px-4 py-2 rounded-full font-medium text-sm focus:outline-none transition-colors duration-200 {% if status == 'Rejected' %}bg-yellow-400 text-white{% else %}bg-white text-gray-700 border border-gray-300{% endif %}"
+              >Rejected</a
+            >
+          </div>
+          <div class="bg-white rounded-xl shadow overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Employee
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Department
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Leave Type
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Start Date
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    End Date
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Status
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                {% for leave in leaves %}
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="font-semibold text-gray-900">
+                      {{ leave.employee_name }}
+                    </div>
+                    <div class="text-xs text-gray-500">
+                      ID: {{ leave.employee_id }}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {{ leave.department }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {{ leave.leave_type }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {{ leave.start_date|date:'M d, Y' }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {{ leave.end_date|date:'M d, Y' }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {% if leave.status == 'Approved' %}
+                    <span
+                      class="inline-block px-3 py-1 text-xs rounded-full bg-green-100 text-green-700 font-semibold"
+                      >Approved</span
+                    >
+                    {% elif leave.status == 'Rejected' %}
+                    <span
+                      class="inline-block px-3 py-1 text-xs rounded-full bg-red-100 text-red-600 font-semibold"
+                      >Rejected</span
+                    >
+                    {% elif leave.status == 'Pending' %}
+                    <span
+                      class="inline-block px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-700 font-semibold"
+                      >Pending</span
+                    >
+                    {% else %}
+                    <span
+                      class="inline-block px-3 py-1 text-xs rounded-full bg-gray-200 text-gray-700 font-semibold"
+                      >{{ leave.status }}</span
+                    >
+                    {% endif %}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    {% if leave.status == 'Pending' %}
+                    <form
+                      method="post"
+                      action="{% url 'update_leave_status' leave.id %}"
+                      class="inline"
+                    >
+                      {% csrf_token %}
+                      <input type="hidden" name="status" value="Approved" />
+                      <button
+                        type="submit"
+                        class="text-green-600 hover:text-green-900 mr-2"
+                      >
+                        Approve
+                      </button>
+                    </form>
+                    <form
+                      method="post"
+                      action="{% url 'update_leave_status' leave.id %}"
+                      class="inline"
+                    >
+                      {% csrf_token %}
+                      <input type="hidden" name="status" value="Rejected" />
+                      <button
+                        type="submit"
+                        class="text-red-600 hover:text-red-900"
+                      >
+                        Reject
+                      </button>
+                    </form>
+                    {% else %}
+                    <span class="text-gray-400">Processed</span>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="7" class="px-6 py-8 text-center text-gray-400">
+                    No leave applications found.
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-6 flex justify-center">
+            {% if page_obj.has_previous %}
+            <a
+              href="?page={{ page_obj.previous_page_number }}{% if status %}&status={{ status }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}"
+              class="px-4 py-2 mr-2 bg-white border border-gray-300 rounded hover:bg-gray-100"
+              >Previous</a
+            >
+            {% endif %}
+            <span class="px-4 py-2 text-gray-700"
+              >Page {{ page_obj.number }} of {{ paginator.num_pages }}</span
+            >
+            {% if page_obj.has_next %}
+            <a
+              href="?page={{ page_obj.next_page_number }}{% if status %}&status={{ status }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}"
+              class="px-4 py-2 ml-2 bg-white border border-gray-300 rounded hover:bg-gray-100"
+              >Next</a
+            >
+            {% endif %}
           </div>
         </div>
       </main>

@@ -16,6 +16,18 @@
       "IsPrincipal": true,
       "ArgumentType": 0,
       "DataSourceItems": null
+    },
+    {
+      "Name": "recipientError",
+      "DisplayName": "recipientError",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": "mohamadazafri@graduate.utm.my",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
     }
   ]
 }

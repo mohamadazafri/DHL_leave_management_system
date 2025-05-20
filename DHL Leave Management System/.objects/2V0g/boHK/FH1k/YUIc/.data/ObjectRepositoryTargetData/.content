@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ObjectRepositoryTargetData ContentHash="KFbIEz5JY0GhIzt0l8dN5Q" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ObjectRepositoryTargetData ContentHash="5-mp06HwYUeGl0LJOb2sOg" Reference="c6hM5NugvUyc4Yq1e7pedw/YUIc_23lXkek74ExcNzWIQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ObjectRepositoryTargetData.Data>
-    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/bulk-upload" CVScreenId="01c071d4-6471-42dd-902f-a9daf8ab6b8f" CvElementArea="441, 596, 1035, 57" CvType="InputBox" DesignTimeRectangle="439, 663, 1040, 55" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='sheets_url' tag='INPUT' type='url' class='focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-3 py-3 sm:text-sm border-gray-300 rounded-md' placeholder='https://docs.google.com/spreadsheets/d/...' aaname='Google Sheets URL' /&gt;" Guid="c72daa0f-04fe-4695-a23d-89749591663a" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Bulk Upload - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/bulk-upload" CVScreenId="01c071d4-6471-42dd-902f-a9daf8ab6b8f" CvElementArea="441, 596, 1035, 57" CvType="InputBox" DesignTimeRectangle="779, 518, 700, 55" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='sheets_url' tag='INPUT' type='url' class='focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-3 py-3 sm:text-sm border-gray-300 rounded-md' placeholder='https://docs.google.com/spreadsheets/d/...' aaname='Google Sheets URL' /&gt;" Guid="c72daa0f-04fe-4695-a23d-89749591663a" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Bulk Upload - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
       <TargetAnchorable.Anchors>
         <scg:List x:TypeArguments="ITarget" Capacity="4">
-          <Target CVScreenId="01c071d4-6471-42dd-902f-a9daf8ab6b8f" CvElementArea="441, 596, 1035, 57" CvType="InputBox" DesignTimeRectangle="439, 660, 1038, 57" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='sheets-upload' tag='LABEL' type='' class='block text-sm font-medium text-gray-700' aaname='Google Sheets URL' check:innerText='Google Sheets URL' /&gt;" Guid="2056b7b6-16ce-424c-8905-e0dcff4b795e" SearchSteps="FuzzySelector, CV" />
+          <Target CVScreenId="01c071d4-6471-42dd-902f-a9daf8ab6b8f" CvElementArea="441, 596, 1035, 57" CvType="InputBox" DesignTimeRectangle="781, 517, 699, 54" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='sheets-upload' tag='LABEL' type='' class='block text-sm font-medium text-gray-700' aaname='Google Sheets URL' check:innerText='Google Sheets URL' /&gt;" Guid="2056b7b6-16ce-424c-8905-e0dcff4b795e" SearchSteps="FuzzySelector, CV" />
         </scg:List>
       </TargetAnchorable.Anchors>
-      <imageRef attrName="InformativeScreenshot" originalValue="2438de9a417940f4946189381ccf5b8e.png" xmlns="">0AGvQNG8wfEaJ0zd-GKMLHg</imageRef>
+      <imageRef attrName="InformativeScreenshot" originalValue="92433c3813e74b4167f565ab401743e5.png" xmlns="">00Bsx_D8BL0yas2seknEJXg</imageRef>
     </TargetAnchorable>
-    <x:String x:Key="ActivityType">TypeInto</x:String>
+    <x:String x:Key="ActivityType">None</x:String>
   </ObjectRepositoryTargetData.Data>
 </ObjectRepositoryTargetData>

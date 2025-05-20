@@ -134,8 +134,8 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False  
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-# ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'sivanesan.letchumanan@dhl.com')
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'mohamadazafri@graduate.utm.my')
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'sivanesan.letchumanan@dhl.com')
+# ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'mohamadazafri@graduate.utm.my')
 UIPATH_TOKEN = os.getenv('UIPATH_TOKEN')
 
 # Login/Logout URLs
