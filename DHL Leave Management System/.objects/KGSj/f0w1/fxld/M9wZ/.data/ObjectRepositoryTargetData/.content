@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="j9NHVpnmeUGkAlKY1U6sig" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/dashboard" CVScreenId="21c46200-ae6d-4871-8c03-7746fd559da1" CvTextArea="39, 556, 119, 25" CvTextArgument="Bulk Upload" CvType="Text" DesignTimeRectangle="39, 550, 260, 35" DesignTimeScaleFactor="1.25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Bulk Upload' tag='A' type='' class='hover:underline text-lg' check:innerText='Bulk Upload' /&gt;" Guid="a24305b8-0ce2-4e9b-84b9-0d5528a63008" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HR Dashboard - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="0634bccf7118d43c1d20d8e8f75b8976.png" xmlns="">0elKiwI_AGUuwQfN3F6JKDw</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

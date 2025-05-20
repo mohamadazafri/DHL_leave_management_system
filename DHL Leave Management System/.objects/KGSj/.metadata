@@ -1,0 +1,12 @@
+﻿{
+  "Name": "Chrome HR Dashboard - DHL",
+  "Type": "App",
+  "Id": "KGSjLHYm3Ea7dSofw-dxMQ",
+  "Reference": "c6hM5NugvUyc4Yq1e7pedw/KGSjLHYm3Ea7dSofw-dxMQ",
+  "Created": "2025-05-15T21:06:22.5959293Z",
+  "Updated": "2025-05-15T21:06:22.5959293Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

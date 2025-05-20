@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulk Upload - DHL</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50 font-['Inter']">
+    <div class="min-h-screen">
+      <!-- Header -->
+      <header
+        class="bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg"
+      >
+        <div class="container mx-auto px-4 py-6">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">
+              DHL Leave Management
+            </h1>
+            <nav class="flex flex-wrap gap-6">
+              <a
+                href="{% url 'leave_form' %}"
+                class="hover:text-yellow-300 transition-colors duration-200"
+                >New Leave</a
+              >
+              <a
+                href="{% url 'dashboard' %}"
+                class="hover:text-yellow-300 transition-colors duration-200"
+                >Dashboard</a
+              >
+              <a
+                href="{% url 'leave_applications' %}"
+                class="hover:text-yellow-300 transition-colors duration-200"
+                >All Applications</a
+              >
+              <a
+                href="{% url 'bulk_upload' %}"
+                class="text-yellow-300 font-semibold border-b-2 border-yellow-300"
+                >Bulk Upload</a
+              >
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <main class="container mx-auto px-4 py-8">
+        <!-- Main Content Card -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-8">
+              <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                Bulk Upload Options
+              </h2>
+              <p class="text-gray-600 mb-6">
+                Choose one of the following methods to upload leave data:
+              </p>
+
+              {% if message %}
+              <div
+                class="bg-{{ message_type }}-50 border-l-4 border-{{ message_type }}-400 p-4 mb-6 rounded-r"
+              >
+                <p class="text-{{ message_type }}-700">{{ message }}</p>
+              </div>
+              {% endif %}
+
+              <!-- Tabs -->
+              <div class="mb-8">
+                <div class="border-b border-gray-200">
+                  <nav class="flex space-x-8" aria-label="Tabs">
+                    <button
+                      onclick="showTab('excel-upload')"
+                      class="tab-button border-red-600 text-red-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200"
+                      id="excel-tab"
+                    >
+                      Excel File Upload
+                    </button>
+                    <button
+                      onclick="showTab('sheets-upload')"
+                      class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200"
+                      id="sheets-tab"
+                    >
+                      Google Sheets Link
+                    </button>
+                  </nav>
+                </div>
+              </div>
+
+              <!-- Excel Upload Form -->
+              <form
+                method="post"
+                enctype="multipart/form-data"
+                class="space-y-6"
+                id="excel-upload"
+              >
+                {% csrf_token %}
+                <input type="hidden" name="upload_type" value="excel" />
+                <div class="space-y-2">
+                  <label
+                    for="excel_file"
+                    class="block text-sm font-medium text-gray-700"
+                    >Excel File</label
+                  >
+                  <div
+                    class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-red-500 transition-colors duration-200"
+                  >
+                    <div class="space-y-1 text-center">
+                      <svg
+                        class="mx-auto h-12 w-12 text-gray-400"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 48 48"
+                      >
+                        <path
+                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <div class="flex text-sm text-gray-600">
+                        <label
+                          for="excel_file"
+                          class="relative cursor-pointer bg-white rounded-md font-medium text-red-600 hover:text-red-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-red-500"
+                        >
+                          <span>Upload a file</span>
+                          <input
+                            id="excel_file"
+                            name="excel_file"
+                            type="file"
+                            class="sr-only"
+                            accept=".xlsx, .xls"
+                            required
+                          />
+                        </label>
+                        <p class="pl-1">or drag and drop</p>
+                      </div>
+                      <p class="text-xs text-gray-500">
+                        XLSX or XLS up to 10MB
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-end">
+                  <button
+                    type="submit"
+                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                      />
+                    </svg>
+                    Upload and Process
+                  </button>
+                </div>
+              </form>
+
+              <!-- Google Sheets Form -->
+              <form method="post" class="space-y-6 hidden" id="sheets-upload">
+                {% csrf_token %}
+                <input type="hidden" name="upload_type" value="sheets" />
+                <div class="space-y-2">
+                  <label
+                    for="sheets_url"
+                    class="block text-sm font-medium text-gray-700"
+                    >Google Sheets URL</label
+                  >
+                  <div class="mt-1 relative rounded-md shadow-sm">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                    >
+                      <svg
+                        class="h-5 w-5 text-gray-400"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      type="url"
+                      name="sheets_url"
+                      id="sheets_url"
+                      placeholder="https://docs.google.com/spreadsheets/d/..."
+                      required
+                      class="focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-3 py-3 sm:text-sm border-gray-300 rounded-md"
+                    />
+                  </div>
+                  <p class="mt-2 text-sm text-gray-500">
+                    Make sure the Google Sheet is publicly accessible or shared
+                    with the service account email.
+                  </p>
+                </div>
+
+                <div class="flex justify-end">
+                  <button
+                    type="submit"
+                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                      />
+                    </svg>
+                    Process Sheet
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- API Documentation Card -->
+          <div class="mt-8 bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-8">
+              <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                API Endpoint for UiPath
+              </h2>
+              <p class="text-gray-600 mb-6">
+                Use this API endpoint for UiPath integration:
+              </p>
+
+              <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <code class="text-sm font-mono text-gray-800"
+                  >POST {{ request.scheme }}://{{ request.get_host
+                  }}/api/leaves/bulk-upload/</code
+                >
+              </div>
+
+              <div class="mt-6">
+                <h3 class="font-semibold text-gray-800 mb-3">
+                  Request Format:
+                </h3>
+                <div
+                  class="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden"
+                >
+                  <pre
+                    class="p-4 overflow-x-auto"
+                  ><code class="text-sm font-mono text-gray-800">{
+  "leaves": [
+    {
+      "employee_name": "John Doe",
+      "employee_id": "EMP001",
+      "leave_type": "Annual",
+      "start_date": "2025-05-10",
+      "end_date": "2025-05-15",
+      "status": "Pending"
+    },
+    {
+      "employee_name": "Jane Smith",
+      "employee_id": "EMP002",
+      "leave_type": "Sick",
+      "start_date": "2025-05-12",
+      "end_date": "2025-05-13",
+      "status": "Approved"
+    }
+  ]
+}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function showTab(tabId) {
+        // Hide all forms
+        document.getElementById("excel-upload").classList.add("hidden");
+        document.getElementById("sheets-upload").classList.add("hidden");
+
+        // Show selected form
+        document.getElementById(tabId).classList.remove("hidden");
+
+        // Update tab styles
+        document.querySelectorAll(".tab-button").forEach((button) => {
+          button.classList.remove("border-red-600", "text-red-600");
+          button.classList.add("border-transparent", "text-gray-500");
+        });
+
+        // Style active tab
+        const activeTab = document.getElementById(tabId + "-tab");
+        activeTab.classList.remove("border-transparent", "text-gray-500");
+        activeTab.classList.add("border-red-600", "text-red-600");
+      }
+
+      // Add drag and drop functionality
+      const dropZone = document.querySelector(".border-dashed");
+      const fileInput = document.getElementById("excel_file");
+
+      ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      ["dragenter", "dragover"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, highlight, false);
+      });
+
+      ["dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+      });
+
+      function highlight(e) {
+        dropZone.classList.add("border-red-500");
+      }
+
+      function unhighlight(e) {
+        dropZone.classList.remove("border-red-500");
+      }
+
+      dropZone.addEventListener("drop", handleDrop, false);
+
+      function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        fileInput.files = files;
+      }
+    </script>
+  </body>
+</html>

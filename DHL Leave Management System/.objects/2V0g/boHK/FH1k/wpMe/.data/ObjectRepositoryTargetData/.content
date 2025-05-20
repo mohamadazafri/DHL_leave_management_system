@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="9gtNm2UXlkWyjiE9dnIpzQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/bulk-upload" DesignTimeRectangle="311, 289, 1296, 612" DesignTimeScaleFactor="1.125" FuzzySelectorArgument="&lt;webctrl parentid='failed-entries' tag='DIV' type='' class='p-8' aaname='                                ' check:innerText='EMPLOYEE NAME&amp;#x9;STAFF ID&amp;#x9;LEAVE TYPE&amp;#x9;START DATE&amp;#x9;END DATE&amp;#x9;REASON&amp;#xA;Employee: EMP001  |  Start Date: 2025' /&gt;" Guid="89476500-8c93-4441-b0d8-1169c38399b4" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Upload Results - DHL' /&gt;" SearchSteps="FuzzySelector" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="2c4810d128d92c65d158471cb7f0522b.png" xmlns="">0idDswGtwTEm-ToCxVOgVFA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">MouseScrollSearchedElement</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leave Application - DHL</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+      <header class="bg-yellow-400 text-red-600 p-4 mb-6 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold">DHL Leave Management System</h1>
+        <nav class="mt-2">
+          <a
+            href="{% url 'leave_form' %}"
+            class="hover:underline text-lg font-bold text-lg underline"
+            >New Leave</a
+          >
+          <a href="{% url 'dashboard' %}" class="hover:underline text-lg"
+            >Dashboard</a
+          >
+          <a
+            href="{% url 'leave_applications' %}"
+            class="hover:underline text-lg"
+            >All Applications</a
+          >
+          <a href="{% url 'bulk_upload' %}" class="hover:underline text-lg"
+            >Bulk Upload</a
+          >
+        </nav>
+      </header>
+
+      <main>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-xl font-semibold mb-4">Submit Leave Application</h2>
+
+          {% if success_message %}
+          <div
+            class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4"
+          >
+            {{ success_message }}
+          </div>
+          {% endif %}
+
+          <form method="post" action="{% url 'leave_form' %}" class="space-y-4">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="employee_id"
+                  class="block text-sm font-medium text-gray-700"
+                  >Employee ID</label
+                >
+                <input
+                  type="text"
+                  name="employee_id"
+                  id="employee_id"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="employee_name"
+                  class="block text-sm font-medium text-gray-700"
+                  >Employee Name</label
+                >
+                <input
+                  type="text"
+                  name="employee_name"
+                  id="employee_name"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="leave_type"
+                  class="block text-sm font-medium text-gray-700"
+                  >Leave Type</label
+                >
+                <select
+                  name="leave_type"
+                  id="leave_type"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500"
+                >
+                  <option value="">Select Leave Type</option>
+                  <option value="Annual">Annual Leave</option>
+                  <option value="Sick">Sick Leave</option>
+                  <option value="Emergency">Emergency Leave</option>
+                  <option value="Maternity">Maternity Leave</option>
+                  <option value="Paternity">Paternity Leave</option>
+                  <option value="Unpaid">Unpaid Leave</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  for="department"
+                  class="block text-sm font-medium text-gray-700"
+                  >Department</label
+                >
+                <input
+                  type="text"
+                  name="department"
+                  id="department"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="start_date"
+                  class="block text-sm font-medium text-gray-700"
+                  >Start Date</label
+                >
+                <input
+                  type="date"
+                  name="start_date"
+                  id="start_date"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="end_date"
+                  class="block text-sm font-medium text-gray-700"
+                  >End Date</label
+                >
+                <input
+                  type="date"
+                  name="end_date"
+                  id="end_date"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="reason"
+                class="block text-sm font-medium text-gray-700"
+                >Reason</label
+              >
+              <textarea
+                name="reason"
+                id="reason"
+                rows="3"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500"
+              ></textarea>
+            </div>
+
+            <div class="flex justify-end">
+              <button
+                type="submit"
+                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              >
+                Submit Application
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

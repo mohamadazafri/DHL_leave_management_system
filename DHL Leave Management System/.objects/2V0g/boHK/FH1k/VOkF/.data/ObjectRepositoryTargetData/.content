@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="EFS-APve6UutDDUGEi_cIA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/login" CVScreenId="c0ef07ca-462e-4ed0-bc76-4664db81b928" CvTextArea="704, 677, 73, 17" CvTextArgument="Password" CvType="Text" DesignTimeRectangle="689, 663, 560, 47" DesignTimeScaleFactor="1.25" ElementType="InputBoxPassword" FuzzySelectorArgument="&lt;webctrl id='password' tag='INPUT' type='password' class='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm' placeholder='Password' aaname='Password' /&gt;" Guid="fd90ae19-4bcb-4da4-b0c4-0c6738eacdaa" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Login - DHL Leave Management' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="a32816a069017f01783a083b561eb61e.png" xmlns="">08qbaEnYTbU2eJY0kaiTAXg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="Z2-yWblcNEGi7j6C5YTD8g" Reference="c6hM5NugvUyc4Yq1e7pedw/eW8QgEsWTU60EqsT2uryRQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/bulk-upload" DesignTimeRectangle="311, 288, 1296, 612" DesignTimeScaleFactor="1.125" FuzzySelectorArgument="&lt;webctrl parentid='failed-entries' tag='DIV' type='' class='p-8' aaname='                                ' check:innerText='EMPLOYEE NAME&amp;#x9;STAFF ID&amp;#x9;LEAVE TYPE&amp;#x9;START DATE&amp;#x9;END DATE&amp;#x9;REASON&amp;#xA;Employee: EMP001  |  Start Date: 2025' /&gt;" Guid="9d302929-9222-4471-8d3a-440bd3f01c7e" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Upload Results - DHL' /&gt;" SearchSteps="FuzzySelector" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="a9e945d16860c5dc05a23ee22a736acd.png" xmlns="">0RrECUCfcV0ufsmguT5ByHA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

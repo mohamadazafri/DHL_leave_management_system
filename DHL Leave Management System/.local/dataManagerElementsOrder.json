@@ -1,0 +1,61 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "jsonData&Sequence_3",
+        "spreadsheetId&Sequence_3",
+        "tempPath&Sequence_3",
+        "tempFileName&Sequence_3",
+        "range&Sequence_4"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "dtSheet",
+        "in_SheetURL"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "AutoUploadData/Login.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "browserURL&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "browserPage"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "AutoUploadData/UploadData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "browserURL&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "browserPage"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "AutoUploadData/Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}

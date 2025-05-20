@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+If you want to use django template tag, please do not break the line. Each line must have only one django template tag. Do not break the tag content apart into another line. Make sure from start until end of the tag is in one line. 

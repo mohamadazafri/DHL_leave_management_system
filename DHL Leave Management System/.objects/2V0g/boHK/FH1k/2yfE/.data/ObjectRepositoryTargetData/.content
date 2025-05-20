@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="PgIY8EDTZkaMRI2nztF7Jg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/bulk-upload" CVScreenId="b3874bab-a2ec-4ef6-93dd-db5d623aa87c" CvTextArea="626, 479, 155, 21" CvTextArgument="Google Sheets Link" CvType="Text" DesignTimeRectangle="623, 455, 162, 67" DesignTimeScaleFactor="1.25" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='sheets-tab' tag='BUTTON' type='' class='tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200' aaname='                       Google Sheets Link                     ' check:innerText='Google Sheets Link' /&gt;" Guid="ce805ad5-0783-4903-8e17-d98671466113" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Bulk Upload - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="296c2da33383f2c117dd99fa30197035.png" xmlns="">05l3NVXRrs0yQ6y_9yBnR3w</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

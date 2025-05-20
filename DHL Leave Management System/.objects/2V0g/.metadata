@@ -1,0 +1,12 @@
+﻿{
+  "Name": "Chrome Login - DHL Leave Management",
+  "Type": "App",
+  "Id": "2V0g07UsOUqFcEaLswXKzg",
+  "Reference": "c6hM5NugvUyc4Yq1e7pedw/2V0g07UsOUqFcEaLswXKzg",
+  "Created": "2025-05-15T20:35:02.6473471Z",
+  "Updated": "2025-05-15T20:35:02.6473471Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

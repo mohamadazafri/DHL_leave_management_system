@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="XZo3XVt_7EGlQMuocH6yTQ" Reference="c6hM5NugvUyc4Yq1e7pedw/f8rGto5vIEyDzZ8WJESHkg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/bulk-upload" CVScreenId="defc4e52-a381-421b-ac3a-4a7e57953925" CvElementArea="972, 378, 604, 170" CvType="InputBox" DesignTimeRectangle="1001, 449, 543, 40" DesignTimeScaleFactor="1.125" ElementType="Text" FuzzySelectorArgument="&lt;webctrl type='' tag='P' class='text-3xl font-bold text-red-600' /&gt;" Guid="b3e2dbc4-ad6e-4802-bfcd-ea3e1b69489c" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Upload Results - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="defc4e52-a381-421b-ac3a-4a7e57953925" CvTextArea="346, 334, 190, 28" CvTextArgument="Upload Results" CvType="Text" DesignTimeRectangle="347, 327, 1224, 36" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='H2' type='' class='text-2xl font-bold text-gray-800 mb-4' aaname='                 Upload Results               ' check:innerText='Upload Results' /&gt;" Guid="38b82e06-4af5-4700-a23c-17a324c6a419" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="9bc9a3c5b0b6e4ca7b61cac3f3010622.png" xmlns="">0pF-U1ej8Lkex_WPK_G2YMQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

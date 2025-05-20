@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Chrome HR Dashboard - DHL",
+  "Type": "Screen",
+  "Id": "fxldNV8-mkGgruID5JaodQ",
+  "Reference": "c6hM5NugvUyc4Yq1e7pedw/fxldNV8-mkGgruID5JaodQ",
+  "ParentRef": "c6hM5NugvUyc4Yq1e7pedw/f0w1LuGM2EGg5mJAuy7lbw",
+  "Created": "2025-05-15T21:06:22.9208152Z",
+  "Updated": "2025-05-15T21:06:22.9208152Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

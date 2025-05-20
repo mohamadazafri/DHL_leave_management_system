@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="pLWH0v9fEEKWpEDectQ5pQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/bulk-upload" CVScreenId="defc4e52-a381-421b-ac3a-4a7e57953925" CvElementArea="345, 379, 602, 170" CvType="InputBox" DesignTimeRectangle="375, 449, 543, 40" DesignTimeScaleFactor="1.125" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='P' type='' class='text-3xl font-bold text-green-600' /&gt;" Guid="4dd4dfa0-2571-488d-b1d9-84212fc55950" ImageBase64="" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Upload Results - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="4aff322c1bb5b709811b20a8669f59e0.png" xmlns="">0Z64LABwEfUW0neyYyOO8OA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">GetText</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

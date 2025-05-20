@@ -1,0 +1,239 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Workflow" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:p1="http://schemas.uipath.com/workflow/activities/ocr" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="browserPage" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Workflow" sap:VirtualizedContainerService.HintSize="1181,1414" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="606,1391" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="browserURL" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome Login - DHL Leave Management" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="572,1308" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="1ecd5759-ccce-41e6-8efe-4f0fd5a27179" Version="V2">
+        <uix:NApplicationCard.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="538,1068" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayBefore="3" DisplayName="Click 'OK'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="504,225" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="1ecd5759-ccce-41e6-8efe-4f0fd5a27179" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/dashboard" CVScreenId="b71d0562-891f-45a6-b4f8-7d8d9c606411" ContentHash="MpESaUJ2YUqOdxmw_ugMOA" CvElementArea="1139, 413, 88, 54" CvTextArea="1171, 432, 23, 15" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="1144, 416, 80, 48" DesignTimeScaleFactor="1.25" ElementType="Button" FullSelectorArgument="&lt;ctrl name='Change your password' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Change your password' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' automationid='' check:fulltext='OK' /&gt;" Guid="addac6cf-f49a-4c2f-be77-798e53ef85de" InformativeScreenshot="dafc126d0dfed5f25c833040a4814cbb.png" Reference="c6hM5NugvUyc4Yq1e7pedw/s1c0g-OIGUKsWMzljoqS-A" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='HR Dashboard - DHL - Google Chrome' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+              </uix:NClick>
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="504,567" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="468,456" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:CVScope ContinueOnError="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DelayBefore="500" DesignTimeCacheId="e995cc3d-9a5e-4129-aea1-73132c2648bf" DisplayName="CV Screen Scope 'push button  OK'" sap:VirtualizedContainerService.HintSize="434,396" sap2010:WorkflowViewState.IdRef="CVScope_1" SendOnPremData="False" Version="V6">
+                      <p:CVScope.Body>
+                        <ActivityAction x:TypeArguments="x:Object">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_8" />
+                        </ActivityAction>
+                      </p:CVScope.Body>
+                      <p:CVScope.DesignTimeCacheContainer>
+                        <uc:CvCacheContainer>
+                          <uc:CvCacheContainer.Caches>
+                            <scg:List x:TypeArguments="uc:CVCache" Capacity="1">
+                              <uc:CVCache DataSent="False" DisplayName="Main Screen" Id="e995cc3d-9a5e-4129-aea1-73132c2648bf" InformativeScreenshot="def722ead5fff5ffb8086886ffa72de0" LogicalPosition="1135, 407" OcrText="OK" Position="1135, 407" ScaleFactor="1.25" ScreenshotGuid="255c224d-af75-47d5-908e-6a098d64e985" ServerVersion="24.10.5.1">
+                                <uc:CVCache.CvAnchorRelations>
+                                  <scg:List x:TypeArguments="uc:AnchorRelationInfo" Capacity="0" />
+                                </uc:CVCache.CvAnchorRelations>
+                                <uc:CVCache.CvUiElements>
+                                  <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="4">
+                                    <uc:CvElementInfo Category="Button" Description="Button" Region="0, 0, 64, 37" />
+                                    <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="0, 0, 64, 37" />
+                                    <uc:CvElementInfo Description="{x:Null}" Category="Icon" Confidence="Runtime" Region="16, 8, 29, 21" />
+                                  </scg:List>
+                                </uc:CVCache.CvUiElements>
+                                <uc:CVCache.OcrTexts>
+                                  <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="1">
+                                    <uc:OcrTextInfo Region="21, 13, 18, 10" Text="OK" />
+                                  </scg:List>
+                                </uc:CVCache.OcrTexts>
+                              </uc:CVCache>
+                            </scg:List>
+                          </uc:CvCacheContainer.Caches>
+                        </uc:CvCacheContainer>
+                      </p:CVScope.DesignTimeCacheContainer>
+                      <p:CVScope.OCREngine>
+                        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                          <ActivityFunc.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                          </ActivityFunc.Argument>
+                          <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseAccents="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="400,25" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_1" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" />
+                        </ActivityFunc>
+                      </p:CVScope.OCREngine>
+                      <p:CVScope.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8f8e70c4-d2f5-43ca-8764-36a72ac266f7" InformativeScreenshot="0b5cf2373a45891f1f67692e3c64465f" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='HR Dashboard - DHL - Google Chrome' /&gt;&lt;ctrl name='Change your password' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" WaitForReady="INTERACTIVE">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                        </ui:Target>
+                      </p:CVScope.Target>
+                      <p:CVScope.UseLocalServer>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </p:CVScope.UseLocalServer>
+                    </p:CVScope>
+                  </Sequence>
+                </ui:CommentOut.Body>
+              </ui:CommentOut>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Bulk Upload'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="504,216" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="1ecd5759-ccce-41e6-8efe-4f0fd5a27179" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/dashboard" CVScreenId="21c46200-ae6d-4871-8c03-7746fd559da1" ContentHash="j9NHVpnmeUGkAlKY1U6sig" CvTextArea="39, 556, 119, 25" CvTextArgument="Bulk Upload" CvType="Text" DesignTimeRectangle="39, 550, 260, 35" DesignTimeScaleFactor="1.25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Bulk Upload' tag='A' type='' class='hover:underline text-lg' check:innerText='Bulk Upload' /&gt;" Guid="a24305b8-0ce2-4e9b-84b9-0d5528a63008" InformativeScreenshot="0634bccf7118d43c1d20d8e8f75b8976.png" Reference="c6hM5NugvUyc4Yq1e7pedw/M9wZBgO2T0yb37HA2dyYAA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HR Dashboard - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+              </uix:NClick>
+            </Sequence>
+          </ActivityAction>
+        </uix:NApplicationCard.Body>
+        <uix:NApplicationCard.TargetApp>
+          <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" ContentHash="G6ygR1YSxE6jbHNMnFqFpA" IconBase64="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" InformativeScreenshot="24cbec2a39314d4c2ce7d88900d6882d.jpg" Reference="c6hM5NugvUyc4Yq1e7pedw/FH1k6t9Si0-1Z78l6jN3lQ" Selector="&lt;html app='chrome.exe' title='Login - DHL Leave Management' /&gt;" Url="[browserURL]" Version="V2" />
+        </uix:NApplicationCard.TargetApp>
+      </uix:NApplicationCard>
+    </Sequence>
+  </Sequence>
+</Activity>

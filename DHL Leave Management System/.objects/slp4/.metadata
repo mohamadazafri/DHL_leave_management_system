@@ -1,0 +1,12 @@
+﻿{
+  "Name": "Chrome UiPath Login Automation",
+  "Type": "App",
+  "Id": "slp4YJ12wkO2G6Dfx8no5g",
+  "Reference": "c6hM5NugvUyc4Yq1e7pedw/slp4YJ12wkO2G6Dfx8no5g",
+  "Created": "2025-05-15T20:33:03.7804265Z",
+  "Updated": "2025-05-15T20:33:03.7804265Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

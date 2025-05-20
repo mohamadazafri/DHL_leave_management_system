@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HR Dashboard v2 - DHL</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- FullCalendar CSS & JS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="fixed top-0 left-0 h-full w-64 bg-yellow-400 text-red-600 flex flex-col py-8 px-6 rounded-r-2xl shadow-lg z-20"
+      >
+        <h1 class="text-3xl font-bold mb-10">DHL Leave Management System</h1>
+        <nav class="flex flex-col space-y-4">
+          <a href="{% url 'leave_form' %}" class="hover:underline text-lg"
+            >New Leave</a
+          >
+          <a href="{% url 'dashboard' %}" class="hover:underline text-lg"
+            >Dashboard</a
+          >
+          <a
+            href="{% url 'leave_applications' %}"
+            class="hover:underline text-lg"
+            >All Applications</a
+          >
+          <a href="{% url 'bulk_upload' %}" class="hover:underline text-lg"
+            >Bulk Upload</a
+          >
+        </nav>
+      </aside>
+      <!-- Main Content -->
+      <main class="flex-1 flex justify-center ml-64">
+        <div class="w-full max-w-7xl px-4 py-8 space-y-8">
+          <!-- Red Segment: Stats and Tabs -->
+          <div class="bg-white rounded-lg shadow-md px-6 py-2 mb-4">
+            <div
+              class="flex flex-col md:flex-row md:items-center md:justify-between"
+            >
+              <div class="flex space-x-8 mb-2 md:mb-0">
+                <div>
+                  <div class="text-sm font-semibold text-gray-700">
+                    Total Applications
+                  </div>
+                  <div class="text-2xl font-bold text-red-600">
+                    {{ total_leaves }}
+                  </div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold text-gray-700">
+                    Pending Applications
+                  </div>
+                  <div class="text-2xl font-bold text-yellow-500">
+                    {{ pending_leaves }}
+                  </div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold text-gray-700">
+                    Approved Applications
+                  </div>
+                  <div class="text-2xl font-bold text-green-600">
+                    {{ approved_leaves }}
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="text-gray-500 text-sm mr-4"
+                  >{% now "l, j F Y" %}</span
+                >
+                <a
+                  href="#"
+                  class="px-4 py-1 rounded-full font-semibold {% if view_mode == 'month' %}bg-red-600 text-white{% else %}bg-gray-100 text-gray-700{% endif %}"
+                  >Month</a
+                >
+                <a
+                  href="#"
+                  class="px-4 py-1 rounded-full font-semibold {% if view_mode == 'week' %}bg-red-600 text-white{% else %}bg-gray-100 text-gray-700{% endif %}"
+                  >Week</a
+                >
+                <a
+                  href="#"
+                  class="px-4 py-1 rounded-full font-semibold {% if view_mode == 'day' %}bg-red-600 text-white{% else %}bg-gray-100 text-gray-700{% endif %}"
+                  >Day</a
+                >
+                <a
+                  href="#"
+                  class="px-4 py-1 rounded-full font-semibold bg-gray-200 text-gray-700"
+                  >Today</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Blue Segment: Quick Approval -->
+          <div class="bg-blue-50 rounded-lg shadow-md p-3 mb-4">
+            <h2 class="text-lg font-semibold mb-2 text-blue-900">
+              Quick Approval
+            </h2>
+            <div class="flex overflow-x-auto space-x-2 pb-1">
+              {% for leave in leaves %} 
+              {% if leave.status == 'Pending' %}
+              <div
+                style="min-width: 300px; max-width: 700px"
+                class="bg-white border border-blue-200 rounded-lg p-2 shadow flex flex-col justify-between"
+              >
+                <!-- Row 1: Name and ID -->
+                <div class="flex items-center w-full mb-1">
+                  <span
+                    class="font-bold text-base text-gray-800"
+                    style="width: 70%"
+                    >{{ leave.employee_name }}</span
+                  >
+                  <span
+                    class="text-xs text-gray-500 text-right"
+                    style="width: 30%"
+                    >ID: {{ leave.employee_id }}</span
+                  >
+                </div>
+                <!-- Row 2: Type -->
+                <div class="w-full mb-1">
+                  <span class="text-xs"
+                    ><span class="font-semibold">Type:</span> {{leave.leave_type
+                    }}</span
+                  >
+                </div>
+                <!-- Row 3: Dates -->
+                <div class="w-full mb-1">
+                  <span class="text-xs"
+                    ><span class="font-semibold">Dates:</span> 
+                    {% if leave.start_date %}{{ leave.start_date|date:"M d, Y" }}
+                    {%else %}-{% endif %} - 
+                    {% if leave.end_date%}{{leave.end_date|date:"M d, Y" }}
+                    {% else%}-
+                    {% endif%}</span
+                  >
+                </div>
+                <!-- Row 4: Approve and Reject Buttons -->
+                <div class="flex items-center w-full gap-1">
+                  <form
+                    method="post"
+                    action="{% url 'update_leave_status' leave.id %}"
+                    style="width: 50%"
+                  >
+                    {% csrf_token %}<input
+                      type="hidden"
+                      name="status"
+                      value="Approved"
+                    /><button
+                      type="submit"
+                      class="w-full bg-green-500 text-white px-2 py-1 rounded text-xs hover:bg-green-600"
+                    >
+                      Approve
+                    </button>
+                  </form>
+                  <form
+                    method="post"
+                    action="{% url 'update_leave_status' leave.id %}"
+                    style="width: 50%"
+                  >
+                    {% csrf_token %}<input
+                      type="hidden"
+                      name="status"
+                      value="Rejected"
+                    /><button
+                      type="submit"
+                      class="w-full bg-red-500 text-white px-2 py-1 rounded text-xs hover:bg-red-600"
+                    >
+                      Reject
+                    </button>
+                  </form>
+                </div>
+              </div>
+              {% endif %}{% endfor %}
+            </div>
+          </div>
+          <!-- Purple Segment: Calendar -->
+          <div class="bg-purple-100 rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4 text-purple-700">
+              Leave Calendar
+            </h2>
+            <div id="leave-calendar"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('leave-calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          height: 500,
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          },
+          events: {{ calendar_events|safe }},
+          eventDisplay: 'block'
+        });
+        calendar.render();
+      });
+    </script>
+  </body>
+</html>
+</html>

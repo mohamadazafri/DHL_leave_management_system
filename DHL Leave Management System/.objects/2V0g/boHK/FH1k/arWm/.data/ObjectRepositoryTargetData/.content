@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="KdBHjf6XD0WR5Bx4UdHDAQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/login" CVScreenId="55546f0a-f50f-4711-817e-9572b72fb8f5" CvElementArea="688, 738, 563, 50" CvTextArea="940, 755, 56, 21" CvTextArgument="Sign in" CvType="Button" DesignTimeRectangle="689, 740, 560, 47" DesignTimeScaleFactor="1.25" ElementType="Button" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500' aaname='                                                                                                  Sign in             ' check:innerText='Sign in' /&gt;" Guid="2cbc6afe-e18d-499b-b961-7cae1dcf8668" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Login - DHL Leave Management' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="202eb0777fb3737d7d0fd4687187b9f7.png" xmlns="">0Uek2fsuZCUC-oM5ct36Y2w</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

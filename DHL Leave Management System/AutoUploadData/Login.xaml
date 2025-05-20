@@ -1,0 +1,453 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Login" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="browserPage" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Login_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Activities.Enums</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Models</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
+      <x:String>UiPath.GSuite.Activities.Gmail.Enums</x:String>
+      <x:String>UiPath.GSuite.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.GSuite.Activities.Gmail.Filters</x:String>
+      <x:String>UiPath.GSuite.Activities.Filters</x:String>
+      <x:String>UiPath.GSuite.Gmail.Enums</x:String>
+      <x:String>UiPath.GSuite.Models</x:String>
+      <x:String>UiPath.Shared.Api.Google.Gmail.Models</x:String>
+      <x:String>UiPath.GSuite.Activities.Utilities</x:String>
+      <x:String>UiPath.Productivity.Activities.Diagnostics</x:String>
+      <x:String>UiPath.GSuite.Activities.Gmail.Triggers</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="885,3985" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="536,3962" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Default="http://localhost:8000/login/" Name="browserURL" />
+        <Variable x:TypeArguments="x:String" Name="googleSheetsLink" />
+        <Variable x:TypeArguments="x:String" Name="screenshotImagePath" />
+        <Variable x:TypeArguments="x:String" Name="failedCountText" />
+        <Variable x:TypeArguments="x:Int32" Name="totalCount" />
+        <Variable x:TypeArguments="x:String" Name="recipient">
+          <Variable.Default>
+            <Literal x:TypeArguments="x:String">mohamadazafri@graduate.utm.my</Literal>
+          </Variable.Default>
+        </Variable>
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="502,271" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter the link to the google sheets" Title="Google Sheets Link">
+        <ui:InputDialog.Result>
+          <OutArgument x:TypeArguments="x:String">[googleSheetsLink]</OutArgument>
+        </ui:InputDialog.Result>
+      </ui:InputDialog>
+      <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Chrome Login - DHL Leave Management" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="502,3608" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Version="V2">
+        <uix:NApplicationCard.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="468,3368" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="emailBody" />
+                <Variable x:TypeArguments="x:String" Name="successfulCountText" />
+                <Variable x:TypeArguments="x:Int32" Name="failedCountInt" />
+                <Variable x:TypeArguments="x:Int32" Name="successfulCountInt" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT username'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,286" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Text="admin" Version="V4">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="c52bb5ba-4169-40c2-9eb4-573e7f7d755d" ContentHash="FeAiB8JbXUS4T0Kiw-2r_g" CvTextArea="704, 600, 80, 16" CvTextArgument="Username" CvType="Text" DesignTimeRectangle="689, 617, 560, 47" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='username' tag='INPUT' type='text' class='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm' placeholder='Username' aaname='Username' /&gt;" Guid="be44a82c-90df-4877-9f14-4070fb8af992" InformativeScreenshot="b1dead887fddcb13416b591a5f57ad6f.png" Reference="c6hM5NugvUyc4Yq1e7pedw/7SQlM_OXhkauyULavMAFDA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Login - DHL Leave Management' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NTypeInto.Target>
+                <uix:NTypeInto.VerifyOptions>
+                  <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                  </uix:VerifyExecutionTypeIntoOptions>
+                </uix:NTypeInto.VerifyOptions>
+              </uix:NTypeInto>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT password'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,286" sap2010:WorkflowViewState.IdRef="NTypeInto_2" IsPassword="True" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Text="admin" Version="V4">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="c0ef07ca-462e-4ed0-bc76-4664db81b928" ContentHash="EFS-APve6UutDDUGEi_cIA" CvTextArea="704, 677, 73, 17" CvTextArgument="Password" CvType="Text" DesignTimeRectangle="689, 663, 560, 47" DesignTimeScaleFactor="1.25" ElementType="InputBoxPassword" FuzzySelectorArgument="&lt;webctrl id='password' tag='INPUT' type='password' class='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm' placeholder='Password' aaname='Password' /&gt;" Guid="fd90ae19-4bcb-4da4-b0c4-0c6738eacdaa" InformativeScreenshot="a32816a069017f01783a083b561eb61e.png" Reference="c6hM5NugvUyc4Yq1e7pedw/VOkF9Z5IcEapxperCWpVHQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Login - DHL Leave Management' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NTypeInto.Target>
+                <uix:NTypeInto.VerifyOptions>
+                  <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                  </uix:VerifyExecutionTypeIntoOptions>
+                </uix:NTypeInto.VerifyOptions>
+              </uix:NTypeInto>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Sign in'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,225" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="55546f0a-f50f-4711-817e-9572b72fb8f5" ContentHash="KdBHjf6XD0WR5Bx4UdHDAQ" CvElementArea="688, 738, 563, 50" CvTextArea="940, 755, 56, 21" CvTextArgument="Sign in" CvType="Button" DesignTimeRectangle="689, 740, 560, 47" DesignTimeScaleFactor="1.25" ElementType="Button" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500' aaname='                                                                                                  Sign in             ' check:innerText='Sign in' /&gt;" Guid="2cbc6afe-e18d-499b-b961-7cae1dcf8668" InformativeScreenshot="202eb0777fb3737d7d0fd4687187b9f7.png" Reference="c6hM5NugvUyc4Yq1e7pedw/arWmbXBLAkKajsTTfalI4A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Login - DHL Leave Management' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayBefore="3" DisplayName="Click 'OK'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,225" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/dashboard" CVScreenId="b71d0562-891f-45a6-b4f8-7d8d9c606411" ContentHash="MpESaUJ2YUqOdxmw_ugMOA" CvElementArea="1139, 413, 88, 54" CvTextArea="1171, 432, 23, 15" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="1144, 416, 80, 48" DesignTimeScaleFactor="1.25" ElementType="Button" FullSelectorArgument="&lt;ctrl name='Change your password' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Change your password' role='dialog' /&gt;&lt;ctrl name='OK' role='push button' automationid='' check:fulltext='OK' /&gt;" Guid="addac6cf-f49a-4c2f-be77-798e53ef85de" InformativeScreenshot="dafc126d0dfed5f25c833040a4814cbb.png" Reference="c6hM5NugvUyc4Yq1e7pedw/s1c0g-OIGUKsWMzljoqS-A" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='HR Dashboard - DHL - Google Chrome' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Bulk Upload'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,225" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/dashboard" CVScreenId="21c46200-ae6d-4871-8c03-7746fd559da1" ContentHash="j9NHVpnmeUGkAlKY1U6sig" CvTextArea="39, 556, 119, 25" CvTextArgument="Bulk Upload" CvType="Text" DesignTimeRectangle="39, 550, 260, 35" DesignTimeScaleFactor="1.25" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Bulk Upload' tag='A' type='' class='hover:underline text-lg' check:innerText='Bulk Upload' /&gt;" Guid="a24305b8-0ce2-4e9b-84b9-0d5528a63008" InformativeScreenshot="0634bccf7118d43c1d20d8e8f75b8976.png" Reference="c6hM5NugvUyc4Yq1e7pedw/M9wZBgO2T0yb37HA2dyYAA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HR Dashboard - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Google Sheets Link'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,225" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/bulk-upload" CVScreenId="cea82ce3-5e04-429d-b621-2a5a9c0e6f8f" ContentHash="uhRIvQhrcEOZFtzHUGJuRA" CvTextArea="626, 479, 155, 21" CvTextArgument="Google Sheets Link" CvType="Text" DesignTimeRectangle="623, 455, 162, 67" DesignTimeScaleFactor="1.25" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='sheets-tab' tag='BUTTON' type='' class='tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200' aaname='                       Google Sheets Link                     ' check:innerText='Google Sheets Link' /&gt;" Guid="3506554d-b169-4261-a37f-79e92361dc70" InformativeScreenshot="296c2da33383f2c117dd99fa30197035.png" Reference="c6hM5NugvUyc4Yq1e7pedw/QCiBM7iUcUmP25Un7rakvQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Bulk Upload - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+              </uix:NClick>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Google Sheets URL'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,286" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Text="[googleSheetsLink]" Version="V4">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/bulk-upload" CVScreenId="01c071d4-6471-42dd-902f-a9daf8ab6b8f" ContentHash="KFbIEz5JY0GhIzt0l8dN5Q" CvElementArea="441, 596, 1035, 57" CvType="InputBox" DesignTimeRectangle="439, 663, 1040, 55" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='sheets_url' tag='INPUT' type='url' class='focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-3 py-3 sm:text-sm border-gray-300 rounded-md' placeholder='https://docs.google.com/spreadsheets/d/...' aaname='Google Sheets URL' /&gt;" Guid="c72daa0f-04fe-4695-a23d-89749591663a" InformativeScreenshot="2438de9a417940f4946189381ccf5b8e.png" Reference="c6hM5NugvUyc4Yq1e7pedw/YUIc_23lXkek74ExcNzWIQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Bulk Upload - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target CVScreenId="01c071d4-6471-42dd-902f-a9daf8ab6b8f" CvElementArea="441, 596, 1035, 57" CvType="InputBox" DesignTimeRectangle="439, 660, 1038, 57" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='sheets-upload' tag='LABEL' type='' class='block text-sm font-medium text-gray-700' aaname='Google Sheets URL' check:innerText='Google Sheets URL' /&gt;" Guid="2056b7b6-16ce-424c-8905-e0dcff4b795e" SearchSteps="FuzzySelector, CV" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NTypeInto.Target>
+                <uix:NTypeInto.VerifyOptions>
+                  <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                  </uix:VerifyExecutionTypeIntoOptions>
+                </uix:NTypeInto.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NTypeInto>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Process Sheet'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,57" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/bulk-upload" CVScreenId="5b7e4bec-3cb6-4b0d-9175-4d5758401538" ContentHash="Ei2U4okR8U6CWLG4lgIIJA" CvElementArea="1256, 780, 227, 67" CvTextArea="1321, 805, 129, 18" CvTextArgument="Process Sheet" CvType="Button" DesignTimeRectangle="1258, 783, 222, 62" DesignTimeScaleFactor="1.25" ElementType="Button" FuzzySelectorArgument="&lt;webctrl parentid='sheets-upload' tag='BUTTON' type='submit' class='inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200' aaname='                                                                                      Process Sheet                   ' check:innerText='Process Sheet' /&gt;" Guid="68f63da5-a695-4566-8ffd-81d0a3095769" InformativeScreenshot="b5bd4c8daa7dd8f845010c0fa35267e9.png" Reference="c6hM5NugvUyc4Yq1e7pedw/GRV_Mtjps0iNrsVuJlrSYw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Bulk Upload - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NGetText DisplayName="Get Text '116'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,57" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" TextString="[successfulCountText]" Version="V4">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/bulk-upload" CVScreenId="defc4e52-a381-421b-ac3a-4a7e57953925" ContentHash="pLWH0v9fEEKWpEDectQ5pQ" CvElementArea="345, 379, 602, 170" CvType="InputBox" DesignTimeRectangle="375, 449, 543, 40" DesignTimeScaleFactor="1.125" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='P' type='' class='text-3xl font-bold text-green-600' /&gt;" Guid="4dd4dfa0-2571-488d-b1d9-84212fc55950" ImageBase64="" InformativeScreenshot="4aff322c1bb5b709811b20a8669f59e0.png" Reference="c6hM5NugvUyc4Yq1e7pedw/F4zoAT5IPkmbJXxqDgMFvQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Upload Results - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NGetText.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NGetText>
+              <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_3">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[successfulCountInt]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[CInt(successfulCountText)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <uix:NGetText DisplayName="Get Text 'Upload Results'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,57" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" TextString="[failedCountText]" Version="V4">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/bulk-upload" CVScreenId="defc4e52-a381-421b-ac3a-4a7e57953925" ContentHash="XZo3XVt_7EGlQMuocH6yTQ" CvElementArea="972, 378, 604, 170" CvType="InputBox" DesignTimeRectangle="1001, 449, 543, 40" DesignTimeScaleFactor="1.125" ElementType="Text" FuzzySelectorArgument="&lt;webctrl type='' tag='P' class='text-3xl font-bold text-red-600' /&gt;" Guid="b3e2dbc4-ad6e-4802-bfcd-ea3e1b69489c" InformativeScreenshot="9bc9a3c5b0b6e4ca7b61cac3f3010622.png" Reference="c6hM5NugvUyc4Yq1e7pedw/f8rGto5vIEyDzZ8WJESHkg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Upload Results - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target CVScreenId="defc4e52-a381-421b-ac3a-4a7e57953925" CvTextArea="346, 334, 190, 28" CvTextArgument="Upload Results" CvType="Text" DesignTimeRectangle="347, 327, 1224, 36" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='H2' type='' class='text-2xl font-bold text-gray-800 mb-4' aaname='                 Upload Results               ' check:innerText='Upload Results' /&gt;" Guid="38b82e06-4af5-4700-a23c-17a324c6a419" SearchSteps="FuzzySelector, CV" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NGetText>
+              <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[failedCountInt]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[CInt(failedCountText)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Failed Entries (6)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,57" sap2010:WorkflowViewState.IdRef="NClick_7" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/bulk-upload" CVScreenId="30982580-0410-4d44-b547-37f852c4fb0c" ContentHash="zOBBDR5_ak-nFzRzSy5Fow" CvTextArea="557, 434, 119, 17" CvTextArgument="Failed Entries (6)" CvType="Text" DesignTimeRectangle="554, 413, 127, 60" DesignTimeScaleFactor="1.125" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='failed-tab' tag='BUTTON' type='' class='tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200' aaname='                   Failed Entries (6)                 ' check:innerText='Failed Entries (6)' /&gt;" Guid="ba72fa07-cc0f-40ba-9067-4230ca4438e0" InformativeScreenshot="a739bc028e6c94c2288f60144ff47a92.png" Reference="c6hM5NugvUyc4Yq1e7pedw/pqghWqjiA0-W1-OYFsw6pQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Upload Results - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[totalCount]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[failedCountInt + successfulCountInt]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <uix:NTakeScreenshot DisplayName="Take Screenshot" FileName="screenshot.png" FileNameMode="None" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,272" sap2010:WorkflowViewState.IdRef="NTakeScreenshot_3" Version="V4">
+                <uix:NTakeScreenshot.SavedTo>
+                  <OutArgument x:TypeArguments="x:String">[screenshotImagePath]</OutArgument>
+                </uix:NTakeScreenshot.SavedTo>
+              </uix:NTakeScreenshot>
+              <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Email="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" Port="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" AttachmentInputMode="FilePaths" Body="[string.Format(&quot;&lt;P&gt;&lt;SPAN&gt;&lt;CODE&gt;&lt;STRONG&gt;&#xD;&#xA;  &#xD;&#xA;    Hello Admin,&#xD;&#xA;    &#xD;&#xA;      Bulk data entry has been completed via the UiPath integration.&#xD;&#xA;    &#xD;&#xA;    &#xD;&#xA;      &#xD;&#xA;        Total entries processed:&#xD;&#xA;        &amp;quot; &amp;amp; totalCount.ToString &amp;amp; &amp;quot;&#xD;&#xA;      &#xD;&#xA;      &#xD;&#xA;        Successful entries:&#xD;&#xA;        &amp;quot; &amp;amp; successfulCount&lt;/STRONG&gt;&lt;/CODE&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&lt;CODE&gt;&lt;STRONG&gt;Text&lt;/STRONG&gt;&lt;/CODE&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&lt;CODE&gt;&lt;STRONG&gt; &amp;amp; &amp;quot;&#xD;&#xA;      &#xD;&#xA;      &#xD;&#xA;        Failed entries (duplicates):&#xD;&#xA;        &amp;quot; &amp;amp; &lt;/STRONG&gt;&lt;/CODE&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&lt;CODE&gt;&lt;STRONG&gt;failedCountText&lt;/STRONG&gt;&lt;/CODE&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&lt;CODE&gt;&lt;STRONG&gt; &amp;amp; &amp;quot;&#xD;&#xA;      &#xD;&#xA;      &#xD;&#xA;        Date and Time:&#xD;&#xA;        &amp;quot; &amp;amp; dateTimeNow &amp;amp; &amp;quot;&#xD;&#xA;      &#xD;&#xA;    &#xD;&#xA;    &#xD;&#xA;      This is an automated notification from the DHL Leave Management System.&#xD;&#xA;    &#xD;&#xA;  &#xD;&#xA;&lt;/STRONG&gt;&lt;/CODE&gt;&lt;/SPAN&gt;&lt;/P&gt;&quot;)]" ConnectionId="a2bb9b05-53b6-4701-ba71-0016cf46e3eb" ConnectionMode="IntegrationService" DisplayName="Send SMTP Email" EnableSSL="True" sap:VirtualizedContainerService.HintSize="434,488" sap2010:WorkflowViewState.IdRef="SendMail_3" IgnoreCRL="False" IsBodyHtml="True" SecureConnection="Auto" Subject="Data Status Entry Update" To="[recipient]" UseISConnection="True">
+                <ui:SendMail.AttachmentsBackup>
+                  <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
+                    <usau:BackupSlot.BackupValues>
+                      <scg:List x:TypeArguments="x:Object" x:Key="Existing" Capacity="1">
+                        <x:Null />
+                      </scg:List>
+                      <scg:List x:TypeArguments="x:Object" x:Key="FilePaths" Capacity="2">
+                        <x:Null />
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                      </scg:List>
+                    </usau:BackupSlot.BackupValues>
+                  </usau:BackupSlot>
+                </ui:SendMail.AttachmentsBackup>
+                <ui:SendMail.ConnectionDetailsBackupSlot>
+                  <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="IntegrationService">
+                    <usau:BackupSlot.BackupValues>
+                      <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+                    </usau:BackupSlot.BackupValues>
+                  </usau:BackupSlot>
+                </ui:SendMail.ConnectionDetailsBackupSlot>
+                <ui:SendMail.Files>
+                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                    <InArgument x:TypeArguments="x:String">[screenshotImagePath]</InArgument>
+                  </scg:List>
+                </ui:SendMail.Files>
+              </ui:SendMail>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Go to Dashboard'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="434,218" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="eb8bd9fe-4e47-4eba-a6e3-453f4f996285" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="localhost/bulk-upload" CVScreenId="3db764f2-0ff5-4820-aa18-2be6c5796d09" ContentHash="cm4Gg9wfAEWegx2Mu1Eg3Q" CvElementArea="978, 934, 200, 60" CvTextArea="1007, 954, 141, 17" CvTextArgument="Go to Dashboard" CvType="Button" DesignTimeRectangle="981, 937, 195, 56" DesignTimeScaleFactor="1.125" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='               Go to Dashboard             ' tag='A' type='' class='inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200' check:innerText='Go to Dashboard' /&gt;" Guid="82b83c2f-920a-441b-8494-37a464d55612" InformativeScreenshot="bfb29fa49be71565eaae05a8b29d3778.png" Reference="c6hM5NugvUyc4Yq1e7pedw/dj7JZCbWlUu9AzVohQe2IQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Upload Results - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                </uix:NClick.Target>
+                <uix:NClick.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NClick.VerifyOptions>
+              </uix:NClick>
+            </Sequence>
+          </ActivityAction>
+        </uix:NApplicationCard.Body>
+        <uix:NApplicationCard.TargetApp>
+          <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" ContentHash="G6ygR1YSxE6jbHNMnFqFpA" IconBase64="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" InformativeScreenshot="24cbec2a39314d4c2ce7d88900d6882d.jpg" Reference="c6hM5NugvUyc4Yq1e7pedw/FH1k6t9Si0-1Z78l6jN3lQ" Selector="&lt;html app='chrome.exe' title='Login - DHL Leave Management' /&gt;" Url="[browserURL]" Version="V2" />
+        </uix:NApplicationCard.TargetApp>
+      </uix:NApplicationCard>
+    </Sequence>
+  </Sequence>
+</Activity>

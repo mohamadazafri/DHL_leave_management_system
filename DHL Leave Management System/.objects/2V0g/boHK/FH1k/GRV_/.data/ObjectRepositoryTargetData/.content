@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="Ei2U4okR8U6CWLG4lgIIJA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/bulk-upload" CVScreenId="5b7e4bec-3cb6-4b0d-9175-4d5758401538" CvElementArea="1256, 780, 227, 67" CvTextArea="1321, 805, 129, 18" CvTextArgument="Process Sheet" CvType="Button" DesignTimeRectangle="1258, 783, 222, 62" DesignTimeScaleFactor="1.25" ElementType="Button" FuzzySelectorArgument="&lt;webctrl parentid='sheets-upload' tag='BUTTON' type='submit' class='inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200' aaname='                                                                                      Process Sheet                   ' check:innerText='Process Sheet' /&gt;" Guid="68f63da5-a695-4566-8ffd-81d0a3095769" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Bulk Upload - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="b5bd4c8daa7dd8f845010c0fa35267e9.png" xmlns="">0F7MG6LhVTkqY18BYD6-_Pw</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

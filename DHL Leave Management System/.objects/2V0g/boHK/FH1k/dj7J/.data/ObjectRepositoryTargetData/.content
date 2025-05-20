@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="cm4Gg9wfAEWegx2Mu1Eg3Q" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/bulk-upload" CVScreenId="3db764f2-0ff5-4820-aa18-2be6c5796d09" CvElementArea="978, 934, 200, 60" CvTextArea="1007, 954, 141, 17" CvTextArgument="Go to Dashboard" CvType="Button" DesignTimeRectangle="981, 937, 195, 56" DesignTimeScaleFactor="1.125" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='               Go to Dashboard             ' tag='A' type='' class='inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200' check:innerText='Go to Dashboard' /&gt;" Guid="82b83c2f-920a-441b-8494-37a464d55612" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Upload Results - DHL' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="bfb29fa49be71565eaae05a8b29d3778.png" xmlns="">0S3eIBOsHAE6FrPVkJRTPdQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

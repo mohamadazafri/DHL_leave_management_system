@@ -1,0 +1,45 @@
+{
+  "DisplayName": "Main",
+  "Tooltip": null,
+  "HelpLink": null,
+  "Color": null,
+  "OriginalIconFileName": null,
+  "Arguments": [
+    {
+      "Name": "in_SheetURL",
+      "DisplayName": "in_SheetURL",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": "https://docs.google.com/spreadsheets/d/10DW-C7t6xAd29Ozk-zAvgTbc_Q-oqdcP/edit?gid=1759902208#gid=1759902208",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "dtSheet",
+      "DisplayName": "dtSheet",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": null,
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "dtDuplicateSheet",
+      "DisplayName": "dtDuplicateSheet",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": null,
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    }
+  ]
+}
