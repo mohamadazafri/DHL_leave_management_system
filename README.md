@@ -55,8 +55,8 @@ MONGODB_HOST=mongodb://localhost:27017
 MONGODB_NAME=dhl_leave_management
 
 # Email Settings
-EMAIL_HOST_USER=your-email@gmail.com
-EMAIL_HOST_PASSWORD=your-app-password
+<!-- EMAIL_HOST_USER=your-email@gmail.com -->
+<!-- EMAIL_HOST_PASSWORD=your-app-password -->
 ADMIN_EMAIL=sivanesan.letchumanan@dhl.com
 ```
 

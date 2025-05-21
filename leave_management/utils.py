@@ -44,10 +44,10 @@ Status: {status}
 This is an automated notification from the DHL Leave Management System.
     """
     
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [settings.ADMIN_EMAIL]
+    # email_from = settings.EMAIL_HOST_USER
+    # recipient_list = [settings.ADMIN_EMAIL]
     
-    send_mail(subject, message, email_from, recipient_list)
+    # send_mail(subject, message, email_from, recipient_list)
     
     return True
 
@@ -68,9 +68,9 @@ Date and Time: {datetime.now().strftime('%d %b, %Y %H:%M:%S')}
 This is an automated notification from the DHL Leave Management System.
     """
     
-    email_from = settings.EMAIL_HOST_USER
+    # email_from = settings.EMAIL_HOST_USER
     recipient_list = [settings.ADMIN_EMAIL]
     
-    send_mail(subject, message, email_from, recipient_list)
+    # send_mail(subject, message, email_from, recipient_list)
     
     return True
