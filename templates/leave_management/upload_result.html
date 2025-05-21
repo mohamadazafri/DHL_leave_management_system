@@ -31,6 +31,19 @@
           <a href="{% url 'bulk_upload' %}" class="hover:underline text-lg"
             >Bulk Upload</a
           >
+          <form
+            method="post"
+            action="{% url 'logout' %}"
+            style="margin-top: 2rem"
+          >
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="w-full text-left px-4 py-2 text-red-600 hover:text-white hover:bg-red-600 rounded transition"
+            >
+              Logout
+            </button>
+          </form>
         </nav>
       </aside>
       <!-- Main Content -->
@@ -190,7 +203,8 @@
 
             <!-- Failed Entries Tab -->
             <div id="failed-entries" class="tab-content hidden">
-              {% if grouped_failed_entries and grouped_failed_entries|length > 0 %}
+              {% if grouped_failed_entries and grouped_failed_entries|length > 0
+              %}
               <div class="p-8">
                 <div class="overflow-x-auto">
                   <table class="min-w-full divide-y divide-gray-200">
