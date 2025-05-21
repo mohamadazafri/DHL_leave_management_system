@@ -361,54 +361,61 @@ class BulkUploadView(TemplateView):
 
             # Process successful entries
             successful_entries = []
+            failed_entries = []
+            
             for entry in unique_df.to_dict('records'):
-                leave = {
+                # Check if a record with the same staff ID and start date already exists
+                existing_record = leave_collection.find_one({
+                    'employee_id': str(entry['Staff_ID']),
+                    'start_date': entry['Start_Date']
+                })
+                
+                if existing_record:
+                    # Add to failed entries if record already exists
+                    failed_entries.append({
+                        'employee_id': str(entry['Staff_ID']),
+                        'employee_name': str(entry['Employee_Name']),
+                        'leave_type': str(entry['Leave_Type']),
+                        'start_date': pd.to_datetime(entry['Start_Date']).strftime('%Y-%m-%d'),
+                        'end_date': pd.to_datetime(entry['End_Date']).strftime('%Y-%m-%d'),
+                        'status': str(entry.get('Status', 'Pending')),
+                        'reason': 'Record already exists with same staff ID and start date'
+                    })
+                else:
+                    # Insert new record if no duplicate exists
+                    leave = {
+                        'employee_id': str(entry['Staff_ID']),
+                        'employee_name': str(entry['Employee_Name']),
+                        'leave_type': str(entry['Leave_Type']),
+                        'start_date': entry['Start_Date'],
+                        'end_date': entry['End_Date'],
+                        'status': str(entry.get('Status', 'Pending')),
+                        'created_at': datetime.now()
+                    }
+                    result = leave_collection.insert_one(leave)
+                    successful_entries.append(leave)
+
+            # Add entries with duplicates within the upload to failed entries
+            for entry in duplicate_df.to_dict('records'):
+                failed_entries.append({
                     'employee_id': str(entry['Staff_ID']),
                     'employee_name': str(entry['Employee_Name']),
                     'leave_type': str(entry['Leave_Type']),
-                    'start_date': entry['Start_Date'],
-                    'end_date': entry['End_Date'],
+                    'start_date': pd.to_datetime(entry['Start_Date']).strftime('%Y-%m-%d'),
+                    'end_date': pd.to_datetime(entry['End_Date']).strftime('%Y-%m-%d'),
                     'status': str(entry.get('Status', 'Pending')),
-                    'created_at': datetime.now()
-                }
-                result = leave_collection.insert_one(leave)
-                successful_entries.append(leave)
-
-            # Group failed entries by employee and start date
-            grouped_failed_entries = []
-            for _, group in duplicate_df.groupby(['Staff_ID', 'Start_Date']):
-                entries = []
-                for entry in group.to_dict('records'):
-                    entries.append({
-                        'employee_id': str(entry['Staff_ID']),
-                        'employee_name': str(entry['Employee_Name']),
-                        'leave_type': str(entry['Leave_Type']),
-                        'start_date': pd.to_datetime(entry['Start_Date']).strftime('%Y-%m-%d'),
-                        'end_date': pd.to_datetime(entry['End_Date']).strftime('%Y-%m-%d'),
-                        'status': str(entry.get('Status', 'Pending'))
-                    })
-                    
-                    grouped_failed_entries.append({
-                        # 'staff_id': str(group['Staff_ID'].iloc[0]),
-                        # 'start_date': pd.to_datetime(group['Start_Date'].iloc[0]).strftime('%Y-%m-%d'),
-                        # 'entries': entries
-                        'employee_id': str(entry['Staff_ID']),
-                        'employee_name': str(entry['Employee_Name']),
-                        'leave_type': str(entry['Leave_Type']),
-                        'start_date': pd.to_datetime(entry['Start_Date']).strftime('%Y-%m-%d'),
-                        'end_date': pd.to_datetime(entry['End_Date']).strftime('%Y-%m-%d'),
-                        'status': str(entry.get('Status', 'Pending'))
-                    })
+                    'reason': 'Duplicate entry within the upload'
+                })
 
             # Send notification about successful uploads
-            # send_bulk_entry_notification(len(successful_entries), len(duplicate_df))
+            # send_bulk_entry_notification(len(successful_entries), len(failed_entries))
 
             # Render the upload result page
             return render(request, 'leave_management/upload_result.html', {
                 'successful_entries': successful_entries,
-                'grouped_failed_entries': grouped_failed_entries,
+                'grouped_failed_entries': failed_entries,
                 'successful_count': len(successful_entries),
-                'failed_count': len(duplicate_df)
+                'failed_count': len(failed_entries)
             })
 
         except Exception as e:
